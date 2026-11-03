@@ -1,26 +1,120 @@
-html,
-body {
-    height: 100%;
+/* Whiteboard Plugin Styles */
+
+#whiteboard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 25;
+    background-color: transparent;
+    pointer-events: none;
+    transition: background-color 0.25s ease;
 }
 
-/* Scale canvas with resize attribute to full size */
-canvas[resize] {
-    width: 100%;
-    height: 100%;
+#whiteboard.wb-active {
+    pointer-events: auto !important;
+    cursor: crosshair !important;
 }
 
-.whiteboard {
-  z-index: 10; /* put .gold-box above .green-box and .dashed-box */
-  background-color:transparent;
-  position:absolute;
-  pointer-events: none;
+#whiteboard.wb-blank-board {
+    background-color: rgba(0, 43, 54, 0.94) !important;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
+/* Floating Presenter Toolbar */
+.whiteboard-toolbar {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(7, 54, 66, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 161, 161, 0.25);
+    border-radius: 30px;
+    padding: 4px 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    transition: all 0.2s ease;
+    opacity: 0.75;
+}
 
-.avoid-clicks {
-  -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer */
--khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
--webkit-user-select: none; /* Chrome, Safari, and Opera */
--webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+.whiteboard-toolbar:hover,
+.whiteboard-toolbar.wb-active {
+    opacity: 1;
+    border-color: rgba(38, 139, 210, 0.6);
+    box-shadow: 0 6px 20px rgba(38, 139, 210, 0.25);
+}
+
+.wb-btn {
+    position: relative;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #93a1a1;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.wb-btn:hover {
+    color: #fdf6e3;
+    background: rgba(147, 161, 161, 0.2);
+}
+
+.wb-btn.active {
+    color: #ffffff;
+    background: #268bd2;
+    box-shadow: 0 0 10px rgba(38, 139, 210, 0.6);
+}
+
+.wb-color-badge {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid #073642;
+}
+
+/* Palette dots */
+.wb-palette {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 4px;
+    border-left: 1px solid rgba(147, 161, 161, 0.2);
+    border-right: 1px solid rgba(147, 161, 161, 0.2);
+}
+
+.wb-color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wb-color-dot:hover {
+    transform: scale(1.25);
+}
+
+.wb-color-dot.active {
+    transform: scale(1.3);
+    box-shadow: 0 0 6px #fff;
+    border-color: #fff;
 }

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="dist/theme/solarized.css">
     <link rel="stylesheet" href="plugin/highlight/atom-one-dark.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="plugin/whiteboard/style.css">
+    <script type="text/javascript" src="plugin/whiteboard/paper-full.min.js"></script>
 
     <style>
         :root {
@@ -490,6 +492,7 @@
     </style>
 </head>
 <body>
+    <canvas id="whiteboard" class="whiteboard" resize></canvas>
     <div class="reveal">
         <div class="slides">
 
@@ -2678,6 +2681,7 @@ if (!is_entitled) {
     <script src="plugin/markdown/markdown.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/elapsed-time-bar/elapsed-time-bar.js"></script>
+    <script src="plugin/whiteboard/plugin.js"></script>
     <script>
         Reveal.initialize({
             navigationMode: 'grid',
@@ -2689,7 +2693,7 @@ if (!is_entitled) {
             width: 1200,
             height: 750,
             margin: 0.04,
-            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, ElapsedTimeBar ],
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, ElapsedTimeBar, Whiteboard ],
             allottedTime: 20 * 60 * 1000,
             progressBarHeight: 5,
             barColor: '#268bd2'
