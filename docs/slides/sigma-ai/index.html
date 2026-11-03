@@ -484,11 +484,161 @@
                     </div>
 
                     <div class="down-cue" style="margin-top: 6px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for Prompt &amp; Context Engineering: Shaping the Ball
+                    </div>
+                </section>
+
+                
+                <!-- 1.3 VERTICAL DETAIL: Prompt & Context Engineering -->
+                <section style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-brain" style="color:var(--solar-blue);"></i> Context &amp; Prompt Engineering: Shaping the Ball</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Moving from single-turn "clever phrasing" to deterministic multi-turn systems state management.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-blue"><i class="fas fa-layer-group"></i> Prefix Caching</span>
+                            <span class="badge badge-green"><i class="fas fa-check-circle"></i> Grounded Evidence</span>
+                            <span class="badge badge-orange"><i class="fas fa-compress-arrows-alt"></i> Compaction Epochs</span>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+                        <!-- Col 1: Chatbot vs Systems Agent -->
+                        <div class="card" style="border-left: 4px solid var(--solar-blue); margin-bottom: 0;">
+                            <h4 style="margin: 0 0 6px 0; font-size: 0.86em;"><i class="fas fa-balance-scale" style="color:var(--solar-blue);"></i> The Engineering Shift</h4>
+                            <table style="width: 100%; font-size: 0.68em; line-height: 1.3; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid #d5c8a5;">
+                                        <th style="padding: 3px 6px; text-align: left;">Dimension</th>
+                                        <th style="padding: 3px 6px; text-align: left; color: var(--solar-red);">Naive Prompting</th>
+                                        <th style="padding: 3px 6px; text-align: left; color: var(--solar-green);">Context Engineering</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #eee8d5;">
+                                        <td style="padding: 3px 6px;"><strong>Scope</strong></td>
+                                        <td style="padding: 3px 6px;">Single-turn string format</td>
+                                        <td style="padding: 3px 6px;">Multi-turn state machine</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee8d5;">
+                                        <td style="padding: 3px 6px;"><strong>Structure</strong></td>
+                                        <td style="padding: 3px 6px;">Markdown prose walls</td>
+                                        <td style="padding: 3px 6px;">Strict schemas &amp; typed tags</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #eee8d5;">
+                                        <td style="padding: 3px 6px;"><strong>Evidence</strong></td>
+                                        <td style="padding: 3px 6px;">Latent weight guessing</td>
+                                        <td style="padding: 3px 6px;">Verified reads &amp; compiler codes</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 3px 6px;"><strong>Lifecycle</strong></td>
+                                        <td style="padding: 3px 6px;">Transient, discarded</td>
+                                        <td style="padding: 3px 6px;">Compacted, epoch-keyed, cached</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Col 2: Four Core Pillars -->
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <div class="card" style="border-left: 4px solid var(--solar-green); margin-bottom: 0; padding: 6px 10px;">
+                                <h4 style="margin: 0 0 2px 0; font-size: 0.82em;"><i class="fas fa-bolt" style="color:var(--solar-green);"></i> 1. Cache-Friendly Prefix Architecture</h4>
+                                <p style="font-size: 0.68em; margin: 0; color: var(--solar-base00);">
+                                    Static rules (<code>AGENTS.md</code>, tool schemas) sit at the head; dynamic memories and observations append at the tail &rarr; <strong>~80% KV-cache hits</strong>, slashing latency and cost.
+                                </p>
+                            </div>
+
+                            <div class="card" style="border-left: 4px solid var(--solar-cyan); margin-bottom: 0; padding: 6px 10px;">
+                                <h4 style="margin: 0 0 2px 0; font-size: 0.82em;"><i class="fas fa-microscope" style="color:var(--solar-cyan);"></i> 2. Evidence-Based Grounding</h4>
+                                <p style="font-size: 0.68em; margin: 0; color: var(--solar-base00);">
+                                    No hallucinated file edits. File mutations require a current <code>read_file</code> in the active context window. Observations are raw exit codes and diffs, not narrative opinions.
+                                </p>
+                            </div>
+
+                            <div class="card" style="border-left: 4px solid var(--solar-orange); margin-bottom: 0; padding: 6px 10px;">
+                                <h4 style="margin: 0 0 2px 0; font-size: 0.82em;"><i class="fas fa-compress" style="color:var(--solar-orange);"></i> 3. Deterministic Compaction Epochs</h4>
+                                <p style="font-size: 0.68em; margin: 0; color: var(--solar-base00);">
+                                    When the ball exceeds headroom limits, older turns fold into 12 KiB semantic summaries. Verbose compiler logs collapse to exit codes with fetch tokens (<code>tool_result_read</code>).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: rgba(38,139,210,0.08); border-left: 4px solid var(--solar-blue); margin-bottom: 6px; padding: 8px 12px;">
+                        <p style="font-size: 0.74em; margin: 0; color: var(--solar-base03); font-weight: 500;">
+                            <i class="fas fa-quote-left" style="color:var(--solar-blue); margin-right: 6px;"></i>
+                            <strong>The Core Invariant:</strong> Prompt engineering guides the model's intent. Context engineering determines whether that intent survives turn twelve without attention degradation or state loss.
+                        </p>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 4px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for the physics: Context Growth, Cost Explosion &amp; Attention Rot
+                    </div>
+                </section>
+
+                <!-- 1.4 VERTICAL DETAIL: Context Growth: Cost Explosion & Attention Rot -->
+                <section style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-chart-line" style="color:var(--solar-red);"></i> The Physics of Context Growth: Cost Explosion &amp; Attention Rot</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Why naive "infinite context windows" are an operational trap: quadratic billing taxes and cognitive degradation.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-red"><i class="fas fa-dollar-sign"></i> Cumulative Token Tax</span>
+                            <span class="badge badge-orange"><i class="fas fa-low-vision"></i> Lost in the Middle</span>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px;">
+                        <!-- Col 1: Cost Explosion -->
+                        <div class="card danger" style="margin-bottom: 0;">
+                            <h4 style="margin: 0 0 6px 0; font-size: 0.88em;"><i class="fas fa-coins" style="color:var(--solar-red);"></i> 1. The Cumulative Cost Explosion</h4>
+                            <p style="font-size: 0.72em; color: var(--solar-base00); margin: 0 0 6px 0;">
+                                In an agent rally, each new turn re-sends the <em>entire accumulated transcript</em>. The billing math is super-linear:
+                            </p>
+                            <div style="background: rgba(220, 50, 47, 0.08); border-radius: 4px; padding: 6px 10px; font-family: monospace; font-size: 0.72em; margin-bottom: 6px; text-align: center;">
+                                Total Billed Tokens = &sum;<sub>t=1..N</sub> ( Prompt + &sum;<sub>i=1..t</sub> Turn<sub>i</sub> )
+                            </div>
+                            <ul class="feature-list" style="font-size: 0.72em; margin: 0;">
+                                <li class="warn"><strong>The 15-Turn Reality:</strong> A task starting with 5k tokens accumulating 4k tokens of logs per turn consumes <strong>~540,000 billed tokens</strong>.</li>
+                                <li class="warn"><strong>Without Prefix Caching:</strong> A $0.03 task balloons to $3.50+ on a single debugging rally.</li>
+                                <li class="warn"><strong>Latency Spike:</strong> Time-to-first-token (TTFT) climbs from 300ms to 4+ seconds as the context swells.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Col 2: Attention Rot -->
+                        <div class="card warning" style="margin-bottom: 0;">
+                            <h4 style="margin: 0 0 6px 0; font-size: 0.88em;"><i class="fas fa-brain" style="color:var(--solar-orange);"></i> 2. Attention Rot &amp; "Lost in the Middle"</h4>
+                            <p style="font-size: 0.72em; color: var(--solar-base00); margin: 0 0 6px 0;">
+                                Research (Liu et al., Anthropic) proves that LLM retrieval accuracy collapses when critical constraints sink into the middle of deep context:
+                            </p>
+                            <ul class="feature-list" style="font-size: 0.72em; margin: 0;">
+                                <li class="warn"><strong>Attention Saturation:</strong> As 20,000 lines of raw compiler output flood context, soft-max attention weights dilute across noise.</li>
+                                <li class="warn"><strong>Circular Regressions:</strong> The model forgets constraints stated in turn 1 and reverts working fixes implemented in turn 3.</li>
+                                <li class="warn"><strong>Hallucinated Victory:</strong> Cognitive overload triggers sycophancy: claiming <em>"All tests pass!"</em> while quietly deleting failing assertions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Takeaway / Bridge to Chapter 3 -->
+                    <div class="card purple" style="margin-bottom: 6px; padding: 8px 12px;">
+                        <p style="font-size: 0.74em; margin: 0; color: var(--solar-base03);">
+                            <i class="fas fa-arrow-circle-right" style="color:var(--solar-violet); margin-right: 6px;"></i>
+                            <strong>The Systems Mandate:</strong> A 200k context window gives the model room to get lost. Without early admission limits (85% cap), tool budgeting (64 KiB), and semantic compaction epochs, longer sessions produce <em>worse code at higher cost</em>.
+                        </p>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 4px;">
                         <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for the production systems architecture: Bus, Router, and Tool Branches
                     </div>
                 </section>
 
-                <!-- 1.3 VERTICAL DETAIL: Production Systems Architecture -->
+                <!-- 1.5 VERTICAL DETAIL: Production Systems Architecture -->
                 <section style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
