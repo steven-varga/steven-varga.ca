@@ -239,6 +239,82 @@
             border-bottom: 1px solid #d5c8a5;
         }
 
+        /* Interactive Hover & Elevation Responsiveness */
+        .card {
+            background: rgba(238, 232, 213, 0.7);
+            border: 1px solid #d3c8a0;
+            border-left: 5px solid var(--solar-blue);
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            text-align: left;
+            transition: transform 0.22s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.22s ease, background 0.22s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(7, 54, 66, 0.12);
+            background: rgba(238, 232, 213, 0.92);
+        }
+
+        .metric-box {
+            background: #002b36;
+            color: #fdf6e3;
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+        .metric-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 43, 54, 0.35);
+        }
+
+        .story-step {
+            color: var(--solar-base01);
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            gap: 6px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            line-height: 1.2;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            user-select: none;
+        }
+        .story-step:hover:not(.active) {
+            background: rgba(38, 139, 210, 0.14);
+            color: var(--solar-blue);
+            transform: translateY(-1px);
+        }
+
+        .tag-pill {
+            display: inline-block;
+            background: rgba(38, 139, 210, 0.15);
+            color: var(--solar-blue);
+            border: 1px solid rgba(38, 139, 210, 0.35);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-family: monospace;
+            margin-right: 4px;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        .tag-pill:hover {
+            background: rgba(38, 139, 210, 0.3);
+            border-color: var(--solar-blue);
+            transform: translateY(-1px);
+        }
+
+        table.spec-table tbody tr {
+            transition: background 0.15s ease;
+        }
+        table.spec-table tbody tr:hover {
+            background: rgba(38, 139, 210, 0.09);
+        }
+
+        /* Interactive Diagram Container & Maximize Controls */
         .diagram-container {
             background: #ffffff;
             border: 1px solid #d5c8a5;
@@ -248,6 +324,132 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            cursor: zoom-in;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+        .diagram-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+            border-color: var(--solar-blue);
+        }
+
+        .zoom-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(7, 54, 66, 0.82);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 11px;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0.65;
+            transition: opacity 0.2s, background 0.2s, transform 0.2s;
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .diagram-container:hover .zoom-btn, .zoomable:hover .zoom-btn {
+            opacity: 1;
+            transform: scale(1.05);
+            background: var(--solar-blue);
+            border-color: #ffffff;
+        }
+
+        /* Fullscreen Lightbox Modal */
+        #diagram-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 43, 54, 0.90);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.24s ease-in-out;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        #diagram-modal.open {
+            display: flex;
+            opacity: 1;
+        }
+        #diagram-modal-card {
+            background: #fdf6e3;
+            border: 2px solid var(--solar-blue);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 95vw;
+            max-height: 92vh;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            overflow: auto;
+            animation: modalScaleIn 0.24s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        @keyframes modalScaleIn {
+            0% { transform: scale(0.92); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        #diagram-modal-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        #diagram-modal-content svg {
+            width: auto !important;
+            height: auto !important;
+            max-width: 88vw !important;
+            max-height: 80vh !important;
+        }
+        #diagram-modal-content img {
+            width: auto !important;
+            height: auto !important;
+            max-width: 88vw !important;
+            max-height: 80vh !important;
+            object-fit: contain;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            background: var(--solar-red);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: transform 0.15s, background 0.15s;
+        }
+        .modal-close-btn:hover {
+            background: #b02624;
+            transform: scale(1.05);
         }
 
         .topology-header {
@@ -2495,5 +2697,84 @@ if (!is_entitled) {
             barColor: '#268bd2'
         });
     </script>
+
+    <!-- Fullscreen Diagram Modal Lightbox -->
+    <div id="diagram-modal">
+        <div id="diagram-modal-card">
+            <button class="modal-close-btn" id="modal-close-btn" title="Minimize / Close [ESC]">
+                <i class="fas fa-compress"></i> Close [ESC]
+            </button>
+            <div id="diagram-modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive Diagram Maximize/Minimize & Navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('diagram-modal');
+            const modalContent = document.getElementById('diagram-modal-content');
+            const closeBtn = document.getElementById('modal-close-btn');
+
+            function openModal(el) {
+                // Find inner SVG or IMG
+                const target = el.querySelector('svg, img');
+                if (!target) return;
+                modalContent.innerHTML = target.outerHTML;
+                modal.classList.add('open');
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                setTimeout(() => { modalContent.innerHTML = ''; }, 240);
+            }
+
+            // Attach zoom buttons to all diagram containers
+            document.querySelectorAll('.diagram-container, .zoomable').forEach(container => {
+                const btn = document.createElement('div');
+                btn.className = 'zoom-btn';
+                btn.innerHTML = '<i class="fas fa-expand"></i> Maximize';
+                btn.title = 'Click to expand diagram full screen';
+                container.appendChild(btn);
+
+                container.addEventListener('click', (e) => {
+                    openModal(container);
+                });
+            });
+
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeModal();
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close on ESC key or X / Q
+            document.addEventListener('keydown', (e) => {
+                if (modal.classList.contains('open')) {
+                    if (e.key === 'Escape' || e.key === 'x' || e.key === 'q') {
+                        closeModal();
+                        e.stopPropagation();
+                    }
+                }
+            }, true);
+
+            // Make storyline steps directly clickable to jump to chapter
+            document.querySelectorAll('.story-step').forEach(step => {
+                step.addEventListener('click', (e) => {
+                    const text = step.textContent.trim();
+                    const match = text.match(/(\d+)\./);
+                    if (match && typeof Reveal !== 'undefined') {
+                        const chapterIndex = parseInt(match[1], 10);
+                        Reveal.slide(chapterIndex, 0);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
