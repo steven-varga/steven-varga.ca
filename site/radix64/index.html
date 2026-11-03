@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -34,10 +34,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2188,7 +2188,7 @@ K \;=\; \big(E(s)\ll 16\big)\; \lor\; \text{idx}_{16}.
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>CONST<span class="w"> </span>BASE<span class="w"> </span>:<span class="o">=</span><span class="w"> </span><span class="m">64</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>CONST<span class="w"> </span>WIDTH<span class="w"> </span>:<span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="w">              </span><span class="c1"># number of 6-bit digits (chars)</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># REQUIRE: ALPHABET[0] is the padding sentinel (min code), e.g. &#39; &#39; or &#39;\0&#39;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># REQUIRE: ALPHABET[0] is the padding sentinel (min code), e.g. ' ' or '\0'</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>INPUT<span class="w">  </span>ALPHABET<span class="o">[</span><span class="m">0</span>..63<span class="o">]</span><span class="w"> </span>:<span class="w"> </span>array<span class="w"> </span>of<span class="w"> </span>char,<span class="w"> </span>total<span class="w"> </span>order<span class="w"> </span>matches<span class="w"> </span>desired<span class="w"> </span>lex<span class="w"> </span>order
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># -------------------------------</span>
@@ -2215,12 +2215,12 @@ K \;=\; \big(E(s)\ll 16\big)\; \lor\; \text{idx}_{16}.
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1"># Big-endian 6-bit digits: first character is most significant digit</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># -------------------------------</span>
 </span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>FUNC<span class="w"> </span>encode_symbol<span class="o">(</span>s:<span class="w"> </span>string<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>uint64:
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span>IF<span class="w"> </span>len<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>WIDTH:<span class="w"> </span>RAISE<span class="w"> </span><span class="s2">&quot;symbol too long&quot;</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span>IF<span class="w"> </span>len<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>WIDTH:<span class="w"> </span>RAISE<span class="w"> </span><span class="s2">"symbol too long"</span>
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span>E<span class="w"> </span>:<span class="o">=</span><span class="w"> </span><span class="m">0</span>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span>FOR<span class="w"> </span>i<span class="w"> </span>IN<span class="w"> </span><span class="m">0</span>..<span class="o">(</span>WIDTH-1<span class="o">)</span>:
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span>IF<span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>len<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>THEN
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">            </span>code<span class="w"> </span>:<span class="o">=</span><span class="w"> </span>char_to_code<span class="o">(</span>s<span class="o">[</span>i<span class="o">])</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">            </span>IF<span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1:<span class="w"> </span>RAISE<span class="w"> </span><span class="s2">&quot;invalid character&quot;</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">            </span>IF<span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1:<span class="w"> </span>RAISE<span class="w"> </span><span class="s2">"invalid character"</span>
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">        </span>ELSE
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">            </span>code<span class="w"> </span>:<span class="o">=</span><span class="w"> </span>PAD_CODE<span class="w">           </span><span class="c1"># right-pad with smallest code</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">        </span>E<span class="w"> </span>:<span class="o">=</span><span class="w"> </span><span class="o">(</span>E<span class="w"> </span><span class="s">&lt;&lt; 6) OR code          # append 6</span>-bit<span class="w"> </span>digit
@@ -2313,10 +2313,10 @@ K \;=\; \big(E(s)\ll 16\big)\; \lor\; \text{idx}_{16}.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -34,10 +34,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2056,10 +2056,9 @@ H5CPP supports `std::vector` directly, including extendable datasets via `h5::ap
 <li>Generative heuristics for layout selection (contiguous, chunked, etc.)</li>
 </ul>
 <p>Basically, all the complexity is hidden—H5CPP handles it. Two quick calls are your friends:</p>
-<p>```cpp
+<p><code>pp
 h5::write(file, dataset_name, std_vector);   // one-shot write
-h5::append(file, dataset_name, std_vector);  // fast chunked appends
-````</p>
+h5::append(file, dataset_name, std_vector);  // fast chunked appends</code></p>
 <p>The <code>h5::append</code> call writes using direct chunk-block IO, and hits the same throughput as the underlying filesystem—even fast single-event streams (like HFT tick bids).</p>
 <p>So you don’t have to reinvent this wheel—unless your goal is educational exploration. In that case: consider writing your own chunked pipeline using BLAS-3 style blocking for performance… but it’s hard, and I built this already 😉</p>
 <h2 id="quick-summary">Quick Summary</h2>
@@ -2145,10 +2144,10 @@ h5::append(file, dataset_name, std_vector);  // fast chunked appends
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

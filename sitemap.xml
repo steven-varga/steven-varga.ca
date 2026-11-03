@@ -2,410 +2,430 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://steven-varga.ca/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-historical-options-h5cpp/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-in-memory-circular-buffer/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-in-memory-circular-buffer/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/optimizing-hdf5-time-series-access/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-templatized-native-type-mapping/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-parallel-write-patterns/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/fix-h5repack-make-check-fail/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-hyperslab-simple-pattern/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-hyperslab-column-fix/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-tick-data-h5cpp/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/iex2h5-first-look/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/compound-type-mapping/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-io-throughput/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-contiguous-subset-reads/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-set-sizes-crash/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-set-istore-k-bug/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-shared-mesg-nindexes-limit/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/csv-to-hdf5/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-cross-compile-features/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/valgrind-move-semantic-test/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-std-vector-read-write/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-write-performance-vs-raw/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-clang-append-api/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-mpi-extend/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/pod-to-hdf5-compound/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-fixed-vs-variable-benchmark/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-single-thread-writer/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-rewrite-attributes/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-long-double-support/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-custom-long-double/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/automated-stl-printing/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-group-overhead/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/zmq-multi-lang-push-pull/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-extendable-datasets/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-direct-chunk-append/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-chunk-atomicity/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-write-performance-vs-raw/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5-wide-compound-optimization/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/h5cpp-dataset-cant-extend/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/from-curve-to-signature-ecdsa-guide/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/radix64-order-preserving-encoding/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/longest-active-stocks-from-iex-pcap/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/iex-timestamp-glitch-wireshark/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/iex-download-rust/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/libdecimal/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/specs/saturn/hardware-description/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/bip/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/decimalfloat-cpp/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/decimalfloat-python/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/eip712/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/generics/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/h5cpp-compiler/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/h5cpp/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/iex-pipeline/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/iex2h5/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/iexdownload/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/kms/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/nss/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/openssl/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/orderbook/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/radix64/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/talks/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/tinycrypto/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/site/uds/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
+    </url>
+    <url>
+         <loc>https://steven-varga.ca/slides/sigma-ai/plugin/chart/</loc>
+         <lastmod>2026-11-03</lastmod>
+    </url>
+    <url>
+         <loc>https://steven-varga.ca/slides/sigma-ai/plugin/poll/</loc>
+         <lastmod>2026-11-03</lastmod>
+    </url>
+    <url>
+         <loc>https://steven-varga.ca/slides/sigma-ai/plugin/questions/</loc>
+         <lastmod>2026-11-03</lastmod>
+    </url>
+    <url>
+         <loc>https://steven-varga.ca/slides/sigma-ai/plugin/seminar/</loc>
+         <lastmod>2026-11-03</lastmod>
+    </url>
+    <url>
+         <loc>https://steven-varga.ca/slides/sigma-ai/plugin/whiteboard/</loc>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2026/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2025/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2023/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2022/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2021/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2020/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2019/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2018/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2017/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2016/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2014/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/systems/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/quantitative-finance/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/tools/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/market-data/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/postmortem/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/finance/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/data-engineering/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/quant/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/encoding/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/c/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/blockchain/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/cryptography/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/julia/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/page/2/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/page/3/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/page/4/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/page/5/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/2020/page/2/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/c/page/2/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/c/page/3/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/c/page/4/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5/page/2/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5/page/3/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://steven-varga.ca/blog/hdf5/page/4/</loc>
-         <lastmod>2026-06-17</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
 </urlset>
