@@ -452,6 +452,67 @@
             transform: scale(1.05);
         }
 
+        /* Audience Lens Switcher Bar */
+        .audience-lens-bar {
+            position: fixed;
+            top: 12px;
+            right: 18px;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 43, 54, 0.88);
+            backdrop-filter: blur(8px);
+            padding: 3px 6px;
+            border-radius: 20px;
+            border: 1px solid rgba(147, 161, 161, 0.35);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            font-family: inherit;
+            user-select: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .lens-label {
+            color: #93a1a1;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 0 4px 0 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .lens-btn {
+            background: transparent;
+            border: none;
+            color: #839496;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 9px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            outline: none;
+        }
+        .lens-btn:hover {
+            color: #fdf6e3;
+            background: rgba(255, 255, 255, 0.10);
+        }
+        .lens-btn.active {
+            color: #ffffff;
+            background: var(--solar-blue);
+            box-shadow: 0 2px 8px rgba(38, 139, 210, 0.45);
+        }
+        .lens-shortcut-hint {
+            font-size: 9px;
+            opacity: 0.65;
+            margin-left: 2px;
+            font-weight: normal;
+        }
+
+
         .topology-header {
             display: flex;
             align-items: center;
@@ -499,7 +560,7 @@
             <!-- ======================================================== -->
             <!-- TOP LEVEL SLIDE 0: TITLE & WELCOME                      -->
             <!-- ======================================================== -->
-            <section data-transition="zoom">
+            <section data-audience="all" data-transition="zoom">
                 <div style="text-align: center; margin-top: 16px;">
                     <div style="font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; color: var(--solar-cyan); margin-bottom: 10px;">
                         <i class="fas fa-layer-group"></i> Systems Architecture & Security Control
@@ -540,7 +601,7 @@
             <!-- ======================================================== -->
             <section>
                 <!-- 1.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step active"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -593,7 +654,7 @@
                 </section>
 
                 <!-- 1.1 VERTICAL DETAIL: Conceptual Napkin Sketch (The Ping-Pong Game) -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-table-tennis" style="color:var(--solar-orange);"></i> The Autonomous Execution Loop: "The Ping-Pong Game"</h3>
@@ -637,7 +698,7 @@
                 </section>
 
                 <!-- 1.2 VERTICAL DETAIL: The Ping-Pong Ball as LLM Context -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-baseball-ball" style="color:var(--solar-yellow);"></i> The Ping-Pong Ball: The LLM Context Window</h3>
@@ -693,7 +754,7 @@
 
                 
                 <!-- 1.3 VERTICAL DETAIL: Prompt & Context Engineering -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-brain" style="color:var(--solar-blue);"></i> Context &amp; Prompt Engineering: Shaping the Ball</h3>
@@ -783,7 +844,7 @@
                 </section>
 
                                 <!-- 1.4 VERTICAL DETAIL: What is a Token? Tokenization Mechanics & SOTA Variance -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-cubes" style="color:var(--solar-blue);"></i> What is a Token? Tokenization Mechanics &amp; SOTA Variance</h3>
@@ -872,7 +933,7 @@
                 </section>
 
                 <!-- 1.5 VERTICAL DETAIL: Context Growth: Cost Explosion & Attention Rot -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-chart-line" style="color:var(--solar-red);"></i> The Physics of Context Growth: Cost Explosion &amp; Attention Rot</h3>
@@ -931,7 +992,7 @@
                 </section>
 
                 <!-- 1.6 VERTICAL DETAIL: Production Systems Architecture -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-sitemap" style="color:var(--solar-cyan);"></i> The Systems Architecture: Inside the Engine</h3>
@@ -1197,7 +1258,7 @@
             <!-- ======================================================== -->
             <section>
                 <!-- 2.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step active"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -1255,7 +1316,7 @@
                 </section>
 
                 <!-- 2.1 VERTICAL DETAIL: The Empirical Sweet Spot -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-bullseye" style="color:var(--solar-green);"></i> The Empirical Sweet Spot: Where AI Delivers Real Value</h3>
@@ -1320,7 +1381,7 @@
                 </section>
 
                 <!-- 2.2 VERTICAL DETAIL: The Real-World Complexity Cliff -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-mountain" style="color:var(--solar-red);"></i> The Complexity &amp; Reliability Cliff</h3>
@@ -1374,7 +1435,7 @@
                 </section>
 
                 <!-- 2.3 VERTICAL DETAIL: The Systems Solution -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-road" style="color:var(--solar-blue);"></i> The Systems Solution: Structured Verification Lanes</h3>
@@ -1477,7 +1538,7 @@
             -->
             <section>
                 <!-- 3.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -1571,7 +1632,7 @@
                 </section>
 
                 <!-- 3.1 VERTICAL DETAIL: Risk 1 — Data Exfiltration & Secret Leaks -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-shield-alt" style="color:var(--solar-red);"></i> Risk 1: Data Exfiltration &amp; Credential Theft</h3>
@@ -1624,7 +1685,7 @@
                 </section>
 
                 <!-- 3.2 VERTICAL DETAIL: Risk 2 — Codebase Corruption & Phantom Passes -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-code-branch" style="color:var(--solar-red);"></i> Risk 2: Codebase Corruption &amp; Phantom Passes</h3>
@@ -1677,7 +1738,7 @@
                 </section>
 
                 <!-- 3.3 VERTICAL DETAIL: Risk 3 — Context Exhaustion & Attention Rot -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-microchip" style="color:var(--solar-orange);"></i> Risk 3: Context Exhaustion &amp; Attention Rot</h3>
@@ -1730,7 +1791,7 @@
                 </section>
 
                 <!-- 3.4 VERTICAL DETAIL: Risk 4 — Runaway Spend & Duplicate External Effects -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-coins" style="color:var(--solar-yellow);"></i> Risk 4: Runaway Spend &amp; Duplicate External Effects</h3>
@@ -1783,7 +1844,7 @@
                 </section>
 
                 <!-- 3.5 VERTICAL DETAIL: Risk 5 — Compartmentalization for R&D, Capital & Gov -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-layer-group" style="color:var(--solar-magenta);"></i> Risk 5: Cross-Project Contamination &amp; Memory Bleed</h3>
@@ -1836,7 +1897,7 @@
                 </section>
 
                 <!-- 3.6 VERTICAL DETAIL: Commercial Honesty — Operational Boundaries -->
-                <section style="text-align: left;">
+                <section data-audience="biz" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-balance-scale" style="color:var(--solar-base00);"></i> Commercial Honesty: Our Operational Boundaries</h3>
@@ -1882,7 +1943,7 @@
             <!-- ======================================================== -->
             <section>
                 <!-- 4.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -1944,7 +2005,7 @@
                 </section>
 
                 <!-- 4.1 VERTICAL DETAIL: Binary Framing & UDS -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3>Transport: Length-Prefixed Binary Framing</h3>
                     <p style="font-size: 0.80em;">Unix Domain Sockets eliminate TCP overhead and localhost port-scanning vulnerabilities:</p>
                     <pre><code class="cpp">
@@ -1971,7 +2032,7 @@ struct frame_header_t {
                 </section>
 
                 <!-- 4.2 VERTICAL DETAIL: Memory & Credential Hardening -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3><i class="fas fa-memory" style="color:var(--solar-violet);"></i> Memory & Credential Hardening</h3>
                     <p style="font-size: 0.80em;"><code>sigma::secret</code> guarantees provider API keys never touch disk or leak across processes:</p>
                     <div class="multiCol">
@@ -2004,7 +2065,7 @@ struct frame_header_t {
             <!-- ======================================================== -->
             <section>
                 <!-- 5.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -2086,7 +2147,7 @@ struct frame_header_t {
                 </section>
 
                 <!-- 5.1 VERTICAL DETAIL: sigma-aid Core -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3><code>sigma-aid</code> &bull; Native C++23 Daemon Core</h3>
                     <div class="multiCol">
                         <div class="col">
@@ -2119,7 +2180,7 @@ architect:
                 </section>
 
                 <!-- 5.2 VERTICAL DETAIL: sigma-iam Role Capabilities -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <h2><code>sigma-iam</code> &bull; Role-Based Capabilities</h2>
                     <table class="spec-table">
                         <thead>
@@ -2171,7 +2232,7 @@ architect:
                 </section>
 
                 <!-- 5.3 VERTICAL DETAIL: sigma-ide & sigma-acp -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3><code>sigma-ide</code> & <code>sigma-acp</code> &bull; Developer Clients</h3>
                     <div class="multiCol">
                         <div class="col">
@@ -2205,7 +2266,7 @@ architect:
             <!-- ======================================================== -->
             <section>
                 <!-- 6.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -2273,7 +2334,7 @@ architect:
                 </section>
 
                 <!-- 6.1 VERTICAL DETAIL: Office Delegation Hierarchy -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <h3>The Virtual Office Delegation Hierarchy</h3>
                     <p style="font-size: 0.80em;">Structured lines of authority eliminate prompt chaos and uncoordinated writes:</p>
 
@@ -2336,7 +2397,7 @@ architect:
                 </section>
 
                 <!-- 6.2 VERTICAL DETAIL: AGENTS.md & SKILLS.md Standards -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3>Open Standards: <code>AGENTS.md</code> & <code>SKILLS.md</code></h3>
                     <p style="font-size: 0.80em;">Declarative, version-controlled repository intelligence:</p>
 
@@ -2379,7 +2440,7 @@ architect:
                 </section>
 
                 <!-- 6.3 VERTICAL DETAIL: Organizational Scaling Tiers -->
-                <section data-transition="convex">
+                <section data-audience="biz" data-transition="convex">
                     <h2>Organizational Scaling: Solo to Enterprise</h2>
                     <table class="spec-table" style="font-size: 0.74em;">
                         <thead>
@@ -2425,7 +2486,7 @@ architect:
             <!-- ======================================================== -->
             <section>
                 <!-- 6.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -2501,7 +2562,7 @@ architect:
                 </section>
 
                 <!-- 6.1 VERTICAL DETAIL: Topology 1 Local Dedicated User -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3>Topology 1: Local Dedicated User Isolation</h3>
                     <p style="font-size: 0.80em;">Prevents rogue tool execution from accessing developer personal files or credentials:</p>
                     
@@ -2548,7 +2609,7 @@ architect:
                 </section>
 
                 <!-- 6.2 VERTICAL DETAIL: Topology 3 Bubblewrap Script -->
-                <section style="text-align: left;">
+                <section data-audience="tech" style="text-align: left;">
                     <h3>Topology 3: Bubblewrap (<code>bwrap</code>) Sandbox</h3>
                     <p style="font-size: 0.80em;">Unprivileged Linux namespace sandboxing for untrusted tools and automated testing:</p>
                     <pre><code class="bash">
@@ -2582,7 +2643,7 @@ bwrap \
                 </section>
 
                 <!-- 6.3 VERTICAL DETAIL: Deployment Comparison Matrix -->
-                <section data-transition="convex">
+                <section data-audience="all" data-transition="convex">
                     <h2>Deployment Models Comparison</h2>
                     <table class="spec-table" style="font-size: 0.74em;">
                         <thead>
@@ -2622,7 +2683,7 @@ bwrap \
                 </section>
 
                 <!-- 6.4 VERTICAL DETAIL: Offline Cryptographic Licensing -->
-                <section style="text-align: left;">
+                <section data-audience="all" style="text-align: left;">
                     <h3>Offline-First Cryptographic Licensing</h3>
                     <p style="font-size: 0.82em;">Enterprise entitlement tokens verified locally without phone-home requirements:</p>
                     <pre><code class="cpp">
@@ -2644,7 +2705,7 @@ if (!is_entitled) {
                 </section>
 
                 <!-- 6.5 VERTICAL DETAIL: Contact & Next Steps -->
-                <section data-transition="zoom">
+                <section data-audience="all" data-transition="zoom">
                     <h2>Get Started with Sigma AI</h2>
                     <div class="multiCol" style="margin-top: 20px;">
                         <div class="col">
@@ -2699,6 +2760,15 @@ if (!is_entitled) {
             barColor: '#268bd2'
         });
     </script>
+
+    <!-- Dynamic Audience Lens Switcher Bar -->
+    <div class="audience-lens-bar" id="audience-lens-bar" title="Switch Audience Lens (Press [L] to cycle)">
+        <span class="lens-label"><i class="fas fa-filter"></i> Lens:</span>
+        <button class="lens-btn active" data-lens="all" title="Show complete 2D presentation grid">All</button>
+        <button class="lens-btn" data-lens="biz" title="Executive, ROI, Risk & Organizational Focus">Business</button>
+        <button class="lens-btn" data-lens="tech" title="Systems Architecture, C++23 Runtime & Sandboxing">Technical</button>
+        <span class="lens-shortcut-hint">[L]</span>
+    </div>
 
     <!-- Fullscreen Diagram Modal Lightbox -->
     <div id="diagram-modal">
@@ -2763,6 +2833,95 @@ if (!is_entitled) {
                     }
                 }
             }, true);
+
+
+            // Audience Lens Controller
+            const LENSES = ['all', 'biz', 'tech'];
+            let currentLens = 'all';
+
+            function applyAudienceLens(lens) {
+                if (!LENSES.includes(lens)) lens = 'all';
+                currentLens = lens;
+
+                // Save preference
+                try { localStorage.setItem('sigma-deck-lens', lens); } catch(e){}
+
+                // Update URL query params without reloading
+                const url = new URL(window.location);
+                if (lens === 'all') {
+                    url.searchParams.delete('lens');
+                    url.searchParams.delete('audience');
+                } else {
+                    url.searchParams.set('lens', lens);
+                }
+                window.history.replaceState({}, '', url);
+
+                // Update active state on buttons
+                document.querySelectorAll('.lens-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lens === lens);
+                });
+
+                // Filter sections based on data-audience
+                const topSections = document.querySelectorAll('.reveal .slides > section');
+                topSections.forEach(topSec => {
+                    const childSections = topSec.querySelectorAll('section');
+                    if (childSections.length === 0) {
+                        const aud = (topSec.getAttribute('data-audience') || 'all').split(',').map(s => s.trim());
+                        const visible = (lens === 'all') || aud.includes('all') || aud.includes(lens);
+                        if (visible) topSec.removeAttribute('data-visibility');
+                        else topSec.setAttribute('data-visibility', 'hidden');
+                    } else {
+                        let anyVisibleChild = false;
+                        childSections.forEach(child => {
+                            const aud = (child.getAttribute('data-audience') || 'all').split(',').map(s => s.trim());
+                            const visible = (lens === 'all') || aud.includes('all') || aud.includes(lens);
+                            if (visible) {
+                                child.removeAttribute('data-visibility');
+                                anyVisibleChild = true;
+                            } else {
+                                child.setAttribute('data-visibility', 'hidden');
+                            }
+                        });
+                        if (anyVisibleChild) topSec.removeAttribute('data-visibility');
+                        else topSec.setAttribute('data-visibility', 'hidden');
+                    }
+                });
+
+                // Synchronize Reveal navigation grid & progress
+                if (typeof Reveal !== 'undefined' && Reveal.sync) {
+                    Reveal.sync();
+                    const currentSlide = Reveal.getCurrentSlide();
+                    if (currentSlide && currentSlide.getAttribute('data-visibility') === 'hidden') {
+                        Reveal.slide(Reveal.getIndices().h, 0);
+                    }
+                }
+            }
+
+            function cycleAudienceLens() {
+                const nextIdx = (LENSES.indexOf(currentLens) + 1) % LENSES.length;
+                applyAudienceLens(LENSES[nextIdx]);
+            }
+
+            // Click listener for lens buttons
+            document.querySelectorAll('.lens-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    applyAudienceLens(btn.dataset.lens);
+                });
+            });
+
+            // Keyboard shortcut 'L' to cycle lens
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                if (e.key === 'l' || e.key === 'L') {
+                    cycleAudienceLens();
+                }
+            });
+
+            // Check initial lens from URL or localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialLens = urlParams.get('lens') || urlParams.get('audience') || localStorage.getItem('sigma-deck-lens') || 'all';
+            applyAudienceLens(initialLens);
 
             // Make storyline steps directly clickable to jump to chapter
             document.querySelectorAll('.story-step').forEach(step => {
