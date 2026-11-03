@@ -575,11 +575,100 @@
                     </div>
 
                     <div class="down-cue" style="margin-top: 4px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for the atomic unit: What is a Token? Tokenization Mechanics &amp; SOTA Variance
+                    </div>
+                </section>
+
+                                <!-- 1.4 VERTICAL DETAIL: What is a Token? Tokenization Mechanics & SOTA Variance -->
+                <section style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-cubes" style="color:var(--solar-blue);"></i> What is a Token? Tokenization Mechanics &amp; SOTA Variance</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                LLMs do not read characters or words—they perceive integer token IDs via Byte-Pair Encoding (BPE).
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-blue"><i class="fas fa-barcode"></i> BPE Subwords</span>
+                            <span class="badge badge-magenta"><i class="fas fa-layer-group"></i> Vocab Size</span>
+                            <span class="badge badge-green"><i class="fas fa-compress-arrows-alt"></i> Code Density</span>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px;">
+                        <!-- Col 1: Mechanics -->
+                        <div class="card" style="margin-bottom: 0;">
+                            <h4 style="margin: 0 0 6px 0; font-size: 0.88em;"><i class="fas fa-microchip" style="color:var(--solar-blue);"></i> 1. The Atomic Unit of Perception</h4>
+                            <p style="font-size: 0.72em; color: var(--solar-base00); margin: 0 0 6px 0;">
+                                Text is translated into numbers via a fixed statistical vocabulary before neural processing:
+                            </p>
+                            <ul style="font-size: 0.70em; color: var(--solar-base01); margin: 0 0 6px 0; padding-left: 18px; line-height: 1.4;">
+                                <li><strong>Subword Chunking:</strong> Common words/keywords (<code>return</code>, <code>void</code>, <code>std::</code>) are 1 token. Rare or complex names (<code>snake_case_t</code>) fragment into 3–4 subwords.</li>
+                                <li><strong>Whitespace &amp; Indentation:</strong> Leading vs trailing spaces, tabs vs 4-space runs change token boundaries. A single trailing space can alter the token ID.</li>
+                                <li><strong>Rule of Thumb:</strong> In English text: ~1 token &approx; 0.75 words (&approx; 4 chars). In C++ &amp; structured JSON: fragmentation spikes token consumption by 30–50%.</li>
+                            </ul>
+                            <div style="background: rgba(38, 139, 210, 0.08); border-radius: 4px; padding: 6px 10px; font-family: monospace; font-size: 0.70em; color: var(--solar-base03);">
+                                "sigma_aid" &rarr; [<code>"sigma"</code>, <code>"_"</code>, <code>"aid"</code>] (3 tokens in legacy BPE)<br>
+                                "void test()" &rarr; [<code>"void"</code>, <code>" test"</code>, <code>"()"</code>] (3 tokens)
+                            </div>
+                        </div>
+
+                        <!-- Col 2: SOTA Tokenizer Variance -->
+                        <div class="card" style="margin-bottom: 0;">
+                            <h4 style="margin: 0 0 6px 0; font-size: 0.88em;"><i class="fas fa-balance-scale" style="color:var(--solar-magenta);"></i> 2. SOTA Variance Across Frontiers</h4>
+                            <p style="font-size: 0.72em; color: var(--solar-base00); margin: 0 0 6px 0;">
+                                Vocabulary size dictates code compression ratio and effective context capacity:
+                            </p>
+                            <table style="width: 100%; font-size: 0.68em; border-collapse: collapse; margin-bottom: 6px;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--solar-base01); text-align: left;">
+                                        <th style="padding: 3px 6px;">Generation / Model</th>
+                                        <th style="padding: 3px 6px;">Vocab Size</th>
+                                        <th style="padding: 3px 6px;">Code Compression &amp; Behavior</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+                                        <td style="padding: 3px 6px;"><strong>Legacy (GPT-3 / LLaMA 1)</strong></td>
+                                        <td style="padding: 3px 6px;">~32k–50k</td>
+                                        <td style="padding: 3px 6px; color: var(--solar-red);">Heavy fragmentation; high token tax on code &amp; JSON.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+                                        <td style="padding: 3px 6px;"><strong>OpenAI cl100k &rarr; o200k</strong></td>
+                                        <td style="padding: 3px 6px;">100k &rarr; 200k</td>
+                                        <td style="padding: 3px 6px; color: var(--solar-green);">o200k (GPT-4o) yields <strong>15–20% denser</strong> code compression.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+                                        <td style="padding: 3px 6px;"><strong>Claude 3.5 / 3.7</strong></td>
+                                        <td style="padding: 3px 6px;">~65k–100k</td>
+                                        <td style="padding: 3px 6px;">Optimized for XML tool wrapping, indentation &amp; prose.</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 3px 6px;"><strong>Qwen 2.5 / LLaMA 3</strong></td>
+                                        <td style="padding: 3px 6px;">128k–152k</td>
+                                        <td style="padding: 3px 6px; color: var(--solar-blue);">Single tokens for multi-space indents &amp; polyglot code.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="font-size: 0.68em; color: var(--solar-base01); margin: 0;">
+                                <i class="fas fa-exclamation-triangle" style="color:var(--solar-orange);"></i> <strong>The Engineering Takeaway:</strong> A larger vocabulary means the exact same 500-line C++ file consumes ~25% fewer tokens—effectively expanding your context budget.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: rgba(38,139,210,0.08); border-left: 4px solid var(--solar-blue); margin-bottom: 6px; padding: 8px 12px;">
+                        <p style="font-size: 0.74em; margin: 0; color: var(--solar-base03); font-weight: 500;">
+                            <i class="fas fa-quote-left" style="color:var(--solar-blue); margin-right: 6px;"></i>
+                            <strong>The Metric of Truth:</strong> Context limits, admission budgets, KV-cache slots, and cloud invoices are measured in <strong>tokens</strong>, never lines of code. How these tokens accumulate across turns dictates whether your agent succeeds or burns out.
+                        </p>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 4px;">
                         <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for the physics: Context Growth, Cost Explosion &amp; Attention Rot
                     </div>
                 </section>
 
-                <!-- 1.4 VERTICAL DETAIL: Context Growth: Cost Explosion & Attention Rot -->
+                <!-- 1.5 VERTICAL DETAIL: Context Growth: Cost Explosion & Attention Rot -->
                 <section style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <div>
@@ -638,7 +727,7 @@
                     </div>
                 </section>
 
-                <!-- 1.5 VERTICAL DETAIL: Production Systems Architecture -->
+                <!-- 1.6 VERTICAL DETAIL: Production Systems Architecture -->
                 <section style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
