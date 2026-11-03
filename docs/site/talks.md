@@ -2,6 +2,7 @@
 
 ### 2025
 
+* [**The Sigma AI Ecosystem**][401] — native C++23 daemon architecture, agent fleet orchestration, process-isolated developer tooling, and editor bridges. [:material-link:][401]
 * [**Call the Doctor: IEX2H5 Deep Dive**][400] — featured guest on The HDF Group’s *Call the Doctor* series (August 5, 2025). In conversation with Gerd Heber, explored the architecture and performance of **IEX2H5**, a high-throughput C++ pipeline for converting IEX-TOPS PCAP data into structured HDF5 time-series datasets. Covered RTS/IRTS schema, vectorized ingest, and persistent market snapshots. \[[:material-youtube: Watch on YouTube][400]]
 
 
@@ -32,6 +33,7 @@
 ## Note
 Presentations marked with ⚠️ a link may no longer be available (files lost, migrated, or out of service). 
 
+[401]: ../slides/sigma-ai/index.html
 [400]: https://www.youtube.com/watch?v=VCPYPWRraQQ
 [300]: ../slides/hdfclinic-2021/index.html
 [301]: ../slides/cpp-meeting-toolfair-2021/index.html

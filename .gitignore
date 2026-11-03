@@ -10,6 +10,7 @@ build/
 /*.html
 /*.xml
 
-site/
+/site/
 
 .og-generator/node_modules/
+node_modules/
