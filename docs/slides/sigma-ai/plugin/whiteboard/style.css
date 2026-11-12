@@ -58,6 +58,23 @@
     box-shadow: 0 6px 20px rgba(38, 139, 210, 0.25);
 }
 
+/* Grouped drawing / pointer tools */
+.wb-tool-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(0, 43, 54, 0.55);
+    border: 1px solid rgba(147, 161, 161, 0.2);
+    border-radius: 20px;
+    padding: 1px 2px;
+}
+
+.wb-tool-group .wb-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85em;
+}
+
 .wb-btn {
     position: relative;
     background: transparent;

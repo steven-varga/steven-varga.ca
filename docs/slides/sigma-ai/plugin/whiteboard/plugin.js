@@ -90,9 +90,11 @@ const init_whiteboard = function(Reveal) {
     const toolbar = document.createElement("div");
     toolbar.className = "whiteboard-toolbar";
     toolbar.innerHTML = `
-        <button class="wb-btn wb-tool-btn wb-pen-btn" data-tool="pen" title="Pen (P)"><i class="fas fa-pen"></i></button>
-        <button class="wb-btn wb-tool-btn wb-marker-btn" data-tool="marker" title="Marker / Highlighter (M)"><i class="fas fa-highlighter"></i></button>
-        <button class="wb-btn wb-tool-btn wb-laser-btn" data-tool="laser" title="Laser Pointer (L)"><i class="fas fa-bullseye"></i></button>
+        <div class="wb-tool-group">
+            <button class="wb-btn wb-tool-btn wb-pen-btn" data-tool="pen" title="Pen (P)"><i class="fas fa-pen"></i></button>
+            <button class="wb-btn wb-tool-btn wb-marker-btn" data-tool="marker" title="Marker / Highlighter (M)"><i class="fas fa-highlighter"></i></button>
+            <button class="wb-btn wb-tool-btn wb-laser-btn" data-tool="laser" title="Laser Pointer (L)"><i class="fas fa-bullseye"></i></button>
+        </div>
         <button class="wb-btn wb-board-btn" title="Toggle Blank Board (B)"><i class="fas fa-chalkboard"></i></button>
         <div class="wb-palette">
             ${palette.map((c, i) => `<button class="wb-color-dot ${i === 0 ? 'active' : ''}" data-idx="${i}" style="background:${c.hex};" title="${c.name} (X/Y)"></button>`).join('')}
