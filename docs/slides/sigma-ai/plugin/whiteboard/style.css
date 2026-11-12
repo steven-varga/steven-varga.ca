@@ -183,3 +183,48 @@
         0 0 0 2px #ffffff,
         0 0 12px 5px var(--laser-color, #dc322f);
 }
+
+/* Sigma Brand Theme Overrides for Whiteboard & Presenter Toolbar */
+body[data-theme="sigma"] .whiteboard-toolbar {
+    background: var(--bg-canvas-alt, #110d08);
+    border: 1px solid var(--bg-card-border, #5c3600);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.65);
+    border-radius: 4px;
+}
+
+body[data-theme="sigma"] .wb-tool-group {
+    background: var(--bg-card, #0b0a08);
+    border: 1px solid var(--bg-card-border, #5c3600);
+    border-radius: 2px;
+}
+
+body[data-theme="sigma"] .wb-btn {
+    border-radius: 2px;
+    color: var(--text-muted, #b69763);
+}
+
+body[data-theme="sigma"] .wb-btn:hover:not(.active) {
+    background: rgba(242, 161, 0, 0.16);
+    color: var(--accent-primary, #f2a100);
+}
+
+body[data-theme="sigma"] .wb-btn.active {
+    background: var(--accent-primary, #f2a100) !important;
+    color: #050505 !important;
+    box-shadow: 0 0 10px rgba(242, 161, 0, 0.45);
+}
+
+body[data-theme="sigma"] .wb-divider {
+    background: var(--bg-card-border, #5c3600);
+}
+
+body[data-theme="sigma"] #whiteboard.wb-blank-board {
+    background-color: var(--bg-canvas, #050505) !important;
+}
+
+body[data-theme="sigma"] #wb-laser-dot {
+    box-shadow:
+        0 0 0 1.5px #ffffff,
+        0 0 10px 4px var(--laser-color, #f2a100);
+}
+

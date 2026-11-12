@@ -23,15 +23,43 @@ let Whiteboard = {
 };
 
 const init_whiteboard = function(Reveal) {
-    const palette = [
-        { name: "Orange", hex: "#cb4b16" },
-        { name: "Blue", hex: "#268bd2" },
-        { name: "Green", hex: "#859900" },
-        { name: "Red", hex: "#dc322f" },
-        { name: "Yellow", hex: "#b58900" },
-        { name: "Cyan", hex: "#2aa198" },
-        { name: "White", hex: "#ffffff" }
-    ];
+    const THEME_PALETTES = {
+        sigma: [
+            { name: "Amber", hex: "#f2a100" },
+            { name: "Gold", hex: "#ffc14a" },
+            { name: "Orange", hex: "#f97316" },
+            { name: "Red", hex: "#ff4d3d" },
+            { name: "Green", hex: "#00d26a" },
+            { name: "Parchment", hex: "#f1e0b7" },
+            { name: "White", hex: "#ffffff" }
+        ],
+        solarized: [
+            { name: "Orange", hex: "#cb4b16" },
+            { name: "Blue", hex: "#268bd2" },
+            { name: "Green", hex: "#859900" },
+            { name: "Red", hex: "#dc322f" },
+            { name: "Yellow", hex: "#b58900" },
+            { name: "Cyan", hex: "#2aa198" },
+            { name: "White", hex: "#ffffff" }
+        ],
+        modern: [
+            { name: "Indigo", hex: "#6366f1" },
+            { name: "Cyan", hex: "#06b6d4" },
+            { name: "Orange", hex: "#f97316" },
+            { name: "Green", hex: "#10b981" },
+            { name: "Red", hex: "#ef4444" },
+            { name: "Muted", hex: "#d4d4d8" },
+            { name: "White", hex: "#ffffff" }
+        ]
+    };
+
+    function get_initial_palette() {
+        const theme = document.body ? (document.body.getAttribute("data-theme") || "sigma") : "sigma";
+        const pal = THEME_PALETTES[theme] || THEME_PALETTES.sigma;
+        return pal.map(p => ({ name: p.name, hex: p.hex }));
+    }
+
+    const palette = get_initial_palette();
 
     let color_idx = 0;
     let pen_stroke_width = 3.5;
@@ -315,6 +343,33 @@ const init_whiteboard = function(Reveal) {
             set_color(parseInt(dot.getAttribute("data-idx"), 10));
         });
     });
+
+    function sync_palette_theme() {
+        const theme = document.body ? (document.body.getAttribute("data-theme") || "sigma") : "sigma";
+        const new_pal = THEME_PALETTES[theme] || THEME_PALETTES.sigma;
+        for (let i = 0; i < new_pal.length && i < palette.length; i++) {
+            palette[i].name = new_pal[i].name;
+            palette[i].hex = new_pal[i].hex;
+            if (colorDots[i]) {
+                colorDots[i].style.background = new_pal[i].hex;
+                colorDots[i].title = `${new_pal[i].name} (${i + 1})`;
+            }
+        }
+        update_ui();
+    }
+
+    if (window.MutationObserver) {
+        const themeObserver = new MutationObserver(mutations => {
+            for (const m of mutations) {
+                if (m.attributeName === "data-theme") {
+                    sync_palette_theme();
+                    break;
+                }
+            }
+        });
+        themeObserver.observe(document.body, { attributes: true, attributeFilter: ["data-theme"] });
+    }
+    sync_palette_theme();
 
     // Toolbar mouse hover handling for laser pointer
     toolbar.addEventListener("mouseenter", () => {

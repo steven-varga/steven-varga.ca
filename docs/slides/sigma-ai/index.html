@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="dist/theme/solarized.css">
     <link rel="stylesheet" href="plugin/highlight/atom-one-dark.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="plugin/whiteboard/style.css">
     <script type="text/javascript" src="plugin/whiteboard/paper-full.min.js"></script>
 
@@ -82,54 +85,364 @@
             --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.55);
         }
 
-        /* 2. Sigma Dark (Signature) */
+        /* 2. Sigma Dark (store-dev.vargalabs.com Brand Style) */
         body[data-theme="sigma"][data-mode="dark"] {
-            --bg-canvas: #0b1120;
-            --bg-canvas-alt: #0f172a;
-            --bg-card: rgba(19, 29, 49, 0.88);
-            --bg-card-border: #1e293b;
-            --bg-diagram: #ffffff;
-            --text-primary: #cbd5e1;
-            --text-header: #f8fafc;
-            --text-title: #38bdf8;
-            --text-muted: #64748b;
-            --accent-primary: #00d2ff;
-            --accent-secondary: #38bdf8;
+            --bg-canvas: #050505;
+            --bg-canvas-alt: #110d08;
+            --bg-card: #0b0a08;
+            --bg-card-border: #5c3600;
+            --bg-card-border-strong: #a96500;
+            --bg-diagram: #0b0a08;
+            --text-primary: #f1e0b7;
+            --text-header: #f1e0b7;
+            --text-title: #f2a100;
+            --text-muted: #b69763;
+            --accent-primary: #f2a100;
+            --accent-secondary: #ffc14a;
             --accent-orange: #f97316;
-            --accent-green: #10b981;
-            --accent-red: #ef4444;
-            --accent-purple: #8b5cf6;
-            --story-bar-bg: rgba(30, 41, 59, 0.65);
-            --story-bar-border: rgba(56, 189, 248, 0.25);
-            --metric-bg: #1e293b;
-            --metric-text: #f8fafc;
-            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            --card-shadow-hover: 0 6px 20px rgba(0, 210, 255, 0.20);
+            --accent-green: #00d26a;
+            --accent-red: #ff4d3d;
+            --accent-purple: #c084fc;
+            --story-bar-bg: #110d08;
+            --story-bar-border: #5c3600;
+            --metric-bg: #0b0a08;
+            --metric-text: #f2a100;
+            --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
+            --card-shadow-hover: 0 4px 20px rgba(242, 161, 0, 0.22);
+
+            /* Remap legacy Solarized tokens for complete presentation harmony */
+            --solar-base03: #050505;
+            --solar-base02: #0b0a08;
+            --solar-base01: #b69763;
+            --solar-base00: #f1e0b7;
+            --solar-base0:  #f1e0b7;
+            --solar-base1:  #b69763;
+            --solar-base2:  #110d08;
+            --solar-base3:  #f1e0b7;
+            --solar-yellow: #f2a100;
+            --solar-orange: #f97316;
+            --solar-red:    #ff4d3d;
+            --solar-magenta:#ffc14a;
+            --solar-violet: #c084fc;
+            --solar-blue:   #f2a100;
+            --solar-cyan:   #ffc14a;
+            --solar-green:  #00d26a;
         }
 
-        /* 3. Sigma Light */
+        /* 3. Sigma Light (store-dev.vargalabs.com Brand Style) */
         body[data-theme="sigma"][data-mode="light"] {
-            --bg-canvas: #f8fafc;
-            --bg-canvas-alt: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.95);
-            --bg-card-border: #cbd5e1;
-            --bg-diagram: #ffffff;
-            --text-primary: #334155;
-            --text-header: #0f172a;
-            --text-title: #0284c7;
-            --text-muted: #64748b;
-            --accent-primary: #0284c7;
-            --accent-secondary: #0ea5e9;
-            --accent-orange: #ea580c;
-            --accent-green: #059669;
-            --accent-red: #dc2626;
-            --accent-purple: #7c3aed;
-            --story-bar-bg: rgba(2, 132, 199, 0.05);
-            --story-bar-border: rgba(2, 132, 199, 0.18);
-            --metric-bg: #0f172a;
-            --metric-text: #f8fafc;
-            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --card-shadow-hover: 0 6px 18px rgba(2, 132, 199, 0.15);
+            --bg-canvas: #f4ecd8;
+            --bg-canvas-alt: #f5ead2;
+            --bg-card: #fbf4e3;
+            --bg-card-border: #9c6a18;
+            --bg-card-border-strong: #c88819;
+            --bg-diagram: #fbf4e3;
+            --text-primary: #332100;
+            --text-header: #332100;
+            --text-title: #8a4f00;
+            --text-muted: #7a5a1f;
+            --accent-primary: #d88700;
+            --accent-secondary: #efa328;
+            --accent-orange: #c65102;
+            --accent-green: #008a3d;
+            --accent-red: #c63a2f;
+            --accent-purple: #7e22ce;
+            --story-bar-bg: #f5ead2;
+            --story-bar-border: #c88819;
+            --metric-bg: #fbf4e3;
+            --metric-text: #332100;
+            --card-shadow: 0 2px 8px rgba(51, 33, 0, 0.08);
+            --card-shadow-hover: 0 4px 18px rgba(216, 135, 0, 0.20);
+
+            /* Remap legacy Solarized tokens for complete presentation harmony */
+            --solar-base03: #332100;
+            --solar-base02: #7a5a1f;
+            --solar-base01: #7a5a1f;
+            --solar-base00: #332100;
+            --solar-base0:  #332100;
+            --solar-base1:  #7a5a1f;
+            --solar-base2:  #f5ead2;
+            --solar-base3:  #f4ecd8;
+            --solar-yellow: #d88700;
+            --solar-orange: #c65102;
+            --solar-red:    #c63a2f;
+            --solar-magenta:#efa328;
+            --solar-violet: #7e22ce;
+            --solar-blue:   #d88700;
+            --solar-cyan:   #efa328;
+            --solar-green:  #008a3d;
+        }
+
+        /* Sigma Store Typography & Component Geometry */
+        body[data-theme="sigma"] {
+            --r-main-font: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --r-heading-font: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --r-code-font: "IBM Plex Mono", ui-monospace, monospace;
+            font-family: var(--r-main-font) !important;
+        }
+
+        body[data-theme="sigma"] .reveal {
+            font-family: var(--r-main-font) !important;
+        }
+
+        body[data-theme="sigma"] .reveal h1,
+        body[data-theme="sigma"] .reveal h2,
+        body[data-theme="sigma"] .reveal h3,
+        body[data-theme="sigma"] .reveal h4 {
+            font-family: var(--r-heading-font) !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.04em !important;
+            text-transform: none !important;
+        }
+
+        body[data-theme="sigma"] .reveal h1 {
+            letter-spacing: -0.05em !important;
+            line-height: 0.98 !important;
+            color: var(--text-header) !important;
+        }
+
+        body[data-theme="sigma"] .reveal h2 {
+            color: var(--accent-primary) !important;
+            letter-spacing: -0.035em !important;
+            line-height: 1.1 !important;
+        }
+
+        body[data-theme="sigma"] .reveal h3 {
+            color: var(--text-muted) !important;
+            letter-spacing: -0.02em !important;
+        }
+
+        body[data-theme="sigma"] .reveal pre code,
+        body[data-theme="sigma"] code,
+        body[data-theme="sigma"] kbd {
+            font-family: var(--r-code-font) !important;
+        }
+
+        /* Sigma Architectural Sharpness: 0px radius for cards and panels */
+        body[data-theme="sigma"] .card {
+            border-radius: 0px !important;
+            border: 1px solid var(--bg-card-border) !important;
+            border-left: 4px solid var(--accent-primary) !important;
+            background: var(--bg-card) !important;
+        }
+
+        body[data-theme="sigma"] .card.accent {
+            border-left: 4px solid var(--accent-secondary) !important;
+        }
+
+        body[data-theme="sigma"] .card.warning {
+            border-left: 4px solid var(--accent-orange) !important;
+        }
+
+        body[data-theme="sigma"] .card.danger {
+            border-left: 4px solid var(--accent-red) !important;
+        }
+
+        body[data-theme="sigma"] .card.success {
+            border-left: 4px solid var(--accent-green) !important;
+        }
+
+        body[data-theme="sigma"] .card.purple {
+            border-left: 4px solid var(--accent-purple) !important;
+        }
+
+        body[data-theme="sigma"] .card:hover {
+            border-color: var(--bg-card-border-strong) !important;
+            box-shadow: var(--card-shadow-hover) !important;
+        }
+
+        /* Pill badges styled like Sigma store eyebrows */
+        body[data-theme="sigma"] .tag-pill {
+            background: var(--bg-canvas-alt);
+            color: var(--text-muted);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 999px;
+            font-family: var(--r-main-font);
+            font-weight: 600;
+            font-size: 0.68em;
+            letter-spacing: 0.05em;
+            padding: 3px 12px;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+
+        body[data-theme="sigma"] .tag-pill:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: var(--bg-canvas-alt);
+        }
+
+        body[data-theme="sigma"] .badge {
+            border-radius: 999px;
+            font-family: var(--r-main-font);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.60em;
+            padding: 3px 10px;
+        }
+
+        body[data-theme="sigma"] .story-bar {
+            background: var(--story-bar-bg);
+            border: 1px solid var(--story-bar-border);
+            border-radius: 0px;
+        }
+
+        body[data-theme="sigma"] .story-step {
+            border-radius: 0px;
+            color: var(--text-muted);
+            font-family: var(--r-main-font);
+            font-weight: 600;
+        }
+
+        body[data-theme="sigma"] .story-step.active {
+            color: #050505 !important;
+            background: var(--accent-primary) !important;
+            font-weight: 700;
+        }
+
+        body[data-theme="sigma"] .story-step.active i {
+            color: #050505 !important;
+        }
+
+        body[data-theme="sigma"] .story-step:hover:not(.active) {
+            background: rgba(242, 161, 0, 0.14);
+            color: var(--accent-primary);
+        }
+
+        body[data-theme="sigma"] .metric-box {
+            background: var(--metric-bg);
+            color: var(--metric-text);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 0px;
+        }
+
+        body[data-theme="sigma"] .metric-value {
+            color: var(--accent-primary);
+            font-family: var(--r-heading-font);
+            letter-spacing: -0.04em;
+        }
+
+        body[data-theme="sigma"] .metric-label {
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        body[data-theme="sigma"] table.spec-table th {
+            background: var(--bg-canvas-alt);
+            color: var(--text-header);
+            border-bottom: 2px solid var(--bg-card-border-strong);
+            font-family: var(--r-heading-font);
+        }
+
+        body[data-theme="sigma"] table.spec-table td {
+            border-bottom: 1px solid var(--bg-card-border);
+            color: var(--text-primary);
+        }
+
+        body[data-theme="sigma"] table.spec-table tbody tr:hover {
+            background: rgba(242, 161, 0, 0.08);
+        }
+
+        body[data-theme="sigma"] .reveal pre {
+            border: 1px solid var(--bg-card-border);
+            border-radius: 0px;
+            box-shadow: var(--card-shadow);
+        }
+
+        body[data-theme="sigma"] .diagram-container {
+            border: 1px solid var(--bg-card-border);
+            border-radius: 0px;
+            background: var(--bg-card);
+        }
+
+        body[data-theme="sigma"] .diagram-container:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        body[data-theme="sigma"] .zoom-btn {
+            border-radius: 0px;
+            background: var(--bg-canvas-alt);
+            border: 1px solid var(--bg-card-border);
+            color: var(--text-primary);
+        }
+
+        body[data-theme="sigma"] .diagram-container:hover .zoom-btn {
+            background: var(--accent-primary);
+            color: #050505;
+            border-color: var(--accent-primary);
+        }
+
+        body[data-theme="sigma"] .investor-slide .pitch-kicker {
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            font-weight: 700;
+        }
+
+        body[data-theme="sigma"] .investor-slide .pitch-lead {
+            color: var(--text-muted);
+            font-size: 1.05em;
+            line-height: 1.45;
+        }
+
+        body[data-theme="sigma"] .investor-slide .pitch-number {
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        body[data-theme="sigma"] .investor-slide .pitch-placeholder {
+            border: 1px dashed var(--bg-card-border-strong);
+            background: var(--bg-canvas-alt);
+            border-radius: 0px;
+            color: var(--text-muted);
+        }
+
+        body[data-theme="sigma"] .down-cue {
+            color: var(--text-muted);
+        }
+
+        body[data-theme="sigma"] .down-cue i {
+            color: var(--accent-primary);
+        }
+
+        body[data-theme="sigma"] kbd {
+            background: var(--bg-canvas-alt);
+            color: var(--accent-primary);
+            border: 1px solid var(--bg-card-border-strong);
+            border-radius: 2px;
+            padding: 1px 5px;
+            font-size: 0.85em;
+            font-family: var(--r-code-font);
+        }
+
+        /* Top Bar Controls in Sigma Theme */
+        body[data-theme="sigma"] .corner-bar {
+            background: var(--bg-canvas-alt);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 4px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+        }
+
+        body[data-theme="sigma"] .lens-label {
+            color: var(--text-muted);
+        }
+
+        body[data-theme="sigma"] .lens-btn,
+        body[data-theme="sigma"] .time-btn,
+        body[data-theme="sigma"] .theme-btn,
+        body[data-theme="sigma"] .mode-btn {
+            border-radius: 2px;
+            color: var(--text-muted);
+        }
+
+        body[data-theme="sigma"] .lens-btn.active,
+        body[data-theme="sigma"] .time-btn.active,
+        body[data-theme="sigma"] .theme-btn.active,
+        body[data-theme="sigma"] .mode-btn.active {
+            color: #050505 !important;
+            background: var(--accent-primary) !important;
+            font-weight: 700;
         }
 
         /* 4. Modern Dark */
@@ -760,7 +1073,7 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="sigma" data-mode="dark">
     <canvas id="whiteboard" class="whiteboard" resize></canvas>
     <canvas id="wb-laser-canvas"></canvas>
     <div id="wb-laser-dot" class="wb-laser-dot"></div>
@@ -3095,15 +3408,15 @@ if (!is_entitled) {
 
         <div class="corner-bar theme-control-bar" id="theme-control-bar" title="Theme Palette (Press [P] to cycle)">
             <span class="lens-label"><i class="fas fa-palette"></i> Theme:</span>
-            <button class="theme-btn" data-theme="sigma" title="Sigma Signature Palette">Sigma</button>
-            <button class="theme-btn active" data-theme="solarized" title="Classic Solarized Palette">Solarized</button>
+            <button class="theme-btn active" data-theme="sigma" title="Sigma Store Brand Palette">Sigma</button>
+            <button class="theme-btn" data-theme="solarized" title="Classic Solarized Palette">Solarized</button>
             <button class="theme-btn" data-theme="modern" title="Modern Minimal Palette">Modern</button>
             <span class="lens-shortcut-hint">[P]</span>
         </div>
 
         <div class="corner-bar mode-control-bar" id="mode-control-bar" title="Mode (Press [M] to toggle)">
-            <button class="mode-btn active" data-mode="light" title="Light Mode (Press [M] to toggle)"><i class="fas fa-sun"></i></button>
-            <button class="mode-btn" data-mode="dark" title="Dark Mode (Press [M] to toggle)"><i class="fas fa-moon"></i></button>
+            <button class="mode-btn" data-mode="light" title="Light Mode (Press [M] to toggle)"><i class="fas fa-sun"></i></button>
+            <button class="mode-btn active" data-mode="dark" title="Dark Mode (Press [M] to toggle)"><i class="fas fa-moon"></i></button>
             <span class="lens-shortcut-hint">[M]</span>
         </div>
     </div>
@@ -3185,8 +3498,8 @@ if (!is_entitled) {
             // Theme Palette & Mode Controller
             const THEMES = ['sigma', 'solarized', 'modern'];
             const MODES = ['light', 'dark'];
-            let currentTheme = 'solarized';
-            let currentMode = 'light';
+            let currentTheme = 'sigma';
+            let currentMode = 'dark';
 
             function updateTheme(theme, mode) {
                 if (THEMES.includes(theme)) currentTheme = theme;
@@ -3201,10 +3514,10 @@ if (!is_entitled) {
                 } catch(e){}
 
                 const url = new URL(window.location);
-                if (currentTheme === 'solarized') url.searchParams.delete('theme');
+                if (currentTheme === 'sigma') url.searchParams.delete('theme');
                 else url.searchParams.set('theme', currentTheme);
 
-                if (currentMode === 'light') url.searchParams.delete('mode');
+                if (currentMode === 'dark') url.searchParams.delete('mode');
                 else url.searchParams.set('mode', currentMode);
                 window.history.replaceState({}, '', url);
 
@@ -3412,8 +3725,8 @@ if (!is_entitled) {
             const initialTime = urlParams.get('time') || localStorage.getItem('sigma-deck-time') || 'standard';
             updateFilters(initialLens, initialTime);
 
-            const initialTheme = urlParams.get('theme') || localStorage.getItem('sigma-deck-theme') || 'solarized';
-            const initialMode = urlParams.get('mode') || localStorage.getItem('sigma-deck-mode') || 'light';
+            const initialTheme = urlParams.get('theme') || localStorage.getItem('sigma-deck-theme') || 'sigma';
+            const initialMode = urlParams.get('mode') || localStorage.getItem('sigma-deck-mode') || 'dark';
             updateTheme(initialTheme, initialMode);
 
             // Make storyline steps directly clickable to jump to chapter
