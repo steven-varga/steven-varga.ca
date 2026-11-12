@@ -92,17 +92,6 @@
     box-shadow: 0 0 12px rgba(220, 50, 47, 0.75);
 }
 
-.wb-color-badge {
-    position: absolute;
-    bottom: 3px;
-    right: 3px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    border: 1px solid #073642;
-    pointer-events: none;
-}
-
 /* Palette dots */
 .wb-palette {
     display: inline-flex;
@@ -151,19 +140,18 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     pointer-events: none;
     z-index: 29;
     transform: translate(-50%, -50%);
-    background: #ffffff;
+    background: var(--laser-color, #dc322f);
     box-shadow:
-        0 0 4px 2px #ffffff,
-        0 0 10px 4px var(--laser-color, #dc322f),
-        0 0 22px 8px var(--laser-glow, rgba(220, 50, 47, 0.55));
+        0 0 0 1.5px #ffffff,
+        0 0 8px 3px var(--laser-color, #dc322f);
     opacity: 0;
-    transition: opacity 0.12s ease, transform 0.08s ease-out;
+    transition: opacity 0.12s ease;
     display: none;
 }
 
@@ -173,9 +161,8 @@
 }
 
 #wb-laser-dot.pulsing {
-    transform: translate(-50%, -50%) scale(1.4);
+    transform: translate(-50%, -50%) scale(1.3);
     box-shadow:
-        0 0 6px 3px #ffffff,
-        0 0 16px 7px var(--laser-color, #dc322f),
-        0 0 32px 12px var(--laser-glow, rgba(220, 50, 47, 0.8));
+        0 0 0 2px #ffffff,
+        0 0 12px 5px var(--laser-color, #dc322f);
 }

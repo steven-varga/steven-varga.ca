@@ -46,7 +46,7 @@ const init_whiteboard = function(Reveal) {
     let laser_drawing = false;
     let laser_trail = []; // Array of { x, y, time }
     let laser_anim_id = null;
-    const TRAIL_DURATION = 1200; // ms
+    const TRAIL_DURATION = 650; // ms responsive vanishing trail
 
     const canvas = document.getElementById("whiteboard");
     if (!canvas) {
@@ -90,9 +90,9 @@ const init_whiteboard = function(Reveal) {
     const toolbar = document.createElement("div");
     toolbar.className = "whiteboard-toolbar";
     toolbar.innerHTML = `
-        <button class="wb-btn wb-tool-btn wb-pen-btn" data-tool="pen" title="Pen (P)"><i class="fas fa-pen"></i><span class="wb-color-badge wb-pen-badge" style="background:${palette[0].hex};"></span></button>
-        <button class="wb-btn wb-tool-btn wb-marker-btn" data-tool="marker" title="Marker / Highlighter (M)"><i class="fas fa-highlighter"></i><span class="wb-color-badge wb-marker-badge" style="background:${palette[0].hex};"></span></button>
-        <button class="wb-btn wb-tool-btn wb-laser-btn" data-tool="laser" title="Laser Pointer (L)"><i class="fas fa-bullseye"></i><span class="wb-color-badge wb-laser-badge" style="background:${palette[0].hex};"></span></button>
+        <button class="wb-btn wb-tool-btn wb-pen-btn" data-tool="pen" title="Pen (P)"><i class="fas fa-pen"></i></button>
+        <button class="wb-btn wb-tool-btn wb-marker-btn" data-tool="marker" title="Marker / Highlighter (M)"><i class="fas fa-highlighter"></i></button>
+        <button class="wb-btn wb-tool-btn wb-laser-btn" data-tool="laser" title="Laser Pointer (L)"><i class="fas fa-bullseye"></i></button>
         <button class="wb-btn wb-board-btn" title="Toggle Blank Board (B)"><i class="fas fa-chalkboard"></i></button>
         <div class="wb-palette">
             ${palette.map((c, i) => `<button class="wb-color-dot ${i === 0 ? 'active' : ''}" data-idx="${i}" style="background:${c.hex};" title="${c.name} (X/Y)"></button>`).join('')}
@@ -108,9 +108,6 @@ const init_whiteboard = function(Reveal) {
     const boardBtn = toolbar.querySelector(".wb-board-btn");
     const clearBtn = toolbar.querySelector(".wb-clear-btn");
     const downloadBtn = toolbar.querySelector(".wb-download-btn");
-    const penBadge = toolbar.querySelector(".wb-pen-badge");
-    const markerBadge = toolbar.querySelector(".wb-marker-badge");
-    const laserBadge = toolbar.querySelector(".wb-laser-badge");
     const colorDots = toolbar.querySelectorAll(".wb-color-dot");
 
     function get_current_color() {
@@ -185,12 +182,7 @@ const init_whiteboard = function(Reveal) {
             }
         }
 
-        // Color badges
-        const currentColor = get_current_color();
-        if (penBadge) penBadge.style.backgroundColor = currentColor;
-        if (markerBadge) markerBadge.style.backgroundColor = currentColor;
-        if (laserBadge) laserBadge.style.backgroundColor = currentColor;
-
+        // Color palette selection state
         colorDots.forEach((dot, idx) => {
             if (idx === color_idx) dot.classList.add("active");
             else dot.classList.remove("active");
@@ -359,42 +351,33 @@ const init_whiteboard = function(Reveal) {
             laserCtx.lineCap = "round";
             laserCtx.lineJoin = "round";
 
+            // Pass 1: Soft outer halo (lightweight, zero shadowBlur)
             for (let i = 1; i < laser_trail.length; i++) {
                 const p0 = laser_trail[i - 1];
                 const p1 = laser_trail[i];
-                const age = (now - p1.time) / TRAIL_DURATION;
-                if (age >= 1) continue;
+                const life = Math.max(0, 1 - (now - p1.time) / TRAIL_DURATION);
+                if (life <= 0) continue;
 
-                const life = Math.max(0, 1 - age); // 1.0 down to 0.0
-
-                // 1. Radiant outer bloom
                 laserCtx.beginPath();
                 laserCtx.moveTo(p0.x, p0.y);
                 laserCtx.lineTo(p1.x, p1.y);
-                laserCtx.lineWidth = 14 * life;
-                laserCtx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.32 * life})`;
-                laserCtx.shadowColor = hex;
-                laserCtx.shadowBlur = 18 * life;
+                laserCtx.lineWidth = 7 * life + 1;
+                laserCtx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.35 * life})`;
                 laserCtx.stroke();
+            }
 
-                // 2. Focused vibrant core
+            // Pass 2: Focused core line
+            for (let i = 1; i < laser_trail.length; i++) {
+                const p0 = laser_trail[i - 1];
+                const p1 = laser_trail[i];
+                const life = Math.max(0, 1 - (now - p1.time) / TRAIL_DURATION);
+                if (life <= 0) continue;
+
                 laserCtx.beginPath();
                 laserCtx.moveTo(p0.x, p0.y);
                 laserCtx.lineTo(p1.x, p1.y);
-                laserCtx.lineWidth = 6 * life;
-                laserCtx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.85 * life})`;
-                laserCtx.shadowColor = hex;
-                laserCtx.shadowBlur = 8 * life;
-                laserCtx.stroke();
-
-                // 3. Hot white center filament
-                laserCtx.beginPath();
-                laserCtx.moveTo(p0.x, p0.y);
-                laserCtx.lineTo(p1.x, p1.y);
-                laserCtx.lineWidth = 2.4 * life;
-                laserCtx.strokeStyle = `rgba(255, 255, 255, ${0.95 * life})`;
-                laserCtx.shadowColor = "#ffffff";
-                laserCtx.shadowBlur = 4 * life;
+                laserCtx.lineWidth = 2.5 * life + 0.5;
+                laserCtx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.9 * life})`;
                 laserCtx.stroke();
             }
 
@@ -474,16 +457,12 @@ const init_whiteboard = function(Reveal) {
                 if (laser_trail.length > 0) {
                     const last = laser_trail[laser_trail.length - 1];
                     const dist = Math.hypot(evt.clientX - last.x, evt.clientY - last.y);
-                    if (dist > 8) {
-                        const steps = Math.min(Math.floor(dist / 6), 5);
-                        for (let s = 1; s <= steps; s++) {
-                            const factor = s / (steps + 1);
-                            laser_trail.push({
-                                x: last.x + (evt.clientX - last.x) * factor,
-                                y: last.y + (evt.clientY - last.y) * factor,
-                                time: now - (steps - s) * 2
-                            });
-                        }
+                    if (dist > 16) {
+                        laser_trail.push({
+                            x: (last.x + evt.clientX) * 0.5,
+                            y: (last.y + evt.clientY) * 0.5,
+                            time: now
+                        });
                     }
                 }
                 laser_trail.push({ x: evt.clientX, y: evt.clientY, time: now });
