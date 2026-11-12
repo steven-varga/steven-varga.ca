@@ -17,6 +17,14 @@
     cursor: crosshair !important;
 }
 
+#whiteboard.wb-active.wb-tool-laser {
+    cursor: none !important;
+}
+
+#whiteboard.wb-active.wb-tool-marker {
+    cursor: crosshair !important;
+}
+
 #whiteboard.wb-blank-board {
     background-color: rgba(0, 43, 54, 0.94) !important;
     backdrop-filter: blur(5px);
@@ -50,6 +58,23 @@
     box-shadow: 0 6px 20px rgba(38, 139, 210, 0.25);
 }
 
+/* Grouped drawing / pointer tools */
+.wb-tool-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(0, 43, 54, 0.55);
+    border: 1px solid rgba(147, 161, 161, 0.2);
+    border-radius: 20px;
+    padding: 1px 2px;
+}
+
+.wb-tool-group .wb-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85em;
+}
+
 .wb-btn {
     position: relative;
     background: transparent;
@@ -78,14 +103,10 @@
     box-shadow: 0 0 10px rgba(38, 139, 210, 0.6);
 }
 
-.wb-color-badge {
-    position: absolute;
-    bottom: 3px;
-    right: 3px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    border: 1px solid #073642;
+.wb-btn.wb-laser-btn.active {
+    color: #ffffff;
+    background: #dc322f;
+    box-shadow: 0 0 12px rgba(220, 50, 47, 0.75);
 }
 
 /* Palette dots */
@@ -118,3 +139,92 @@
     box-shadow: 0 0 6px #fff;
     border-color: #fff;
 }
+
+/* Dedicated Laser Canvas for Vanishing Trail */
+#wb-laser-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 28;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* Glowing Laser Pointer Dot */
+#wb-laser-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 29;
+    transform: translate(-50%, -50%);
+    background: var(--laser-color, #dc322f);
+    box-shadow:
+        0 0 0 1.5px #ffffff,
+        0 0 8px 3px var(--laser-color, #dc322f);
+    opacity: 0;
+    transition: opacity 0.12s ease;
+    display: none;
+}
+
+#wb-laser-dot.visible {
+    display: block;
+    opacity: 1;
+}
+
+#wb-laser-dot.pulsing {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 12px 5px var(--laser-color, #dc322f);
+}
+
+/* Sigma Brand Theme Overrides for Whiteboard & Presenter Toolbar */
+body[data-theme="sigma"] .whiteboard-toolbar {
+    background: var(--bg-canvas-alt, #110d08);
+    border: 1px solid var(--bg-card-border, #5c3600);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.65);
+    border-radius: 4px;
+}
+
+body[data-theme="sigma"] .wb-tool-group {
+    background: var(--bg-card, #0b0a08);
+    border: 1px solid var(--bg-card-border, #5c3600);
+    border-radius: 2px;
+}
+
+body[data-theme="sigma"] .wb-btn {
+    border-radius: 2px;
+    color: var(--text-muted, #b69763);
+}
+
+body[data-theme="sigma"] .wb-btn:hover:not(.active) {
+    background: rgba(242, 161, 0, 0.16);
+    color: var(--accent-primary, #f2a100);
+}
+
+body[data-theme="sigma"] .wb-btn.active {
+    background: var(--accent-primary, #f2a100) !important;
+    color: #050505 !important;
+    box-shadow: 0 0 10px rgba(242, 161, 0, 0.45);
+}
+
+body[data-theme="sigma"] .wb-divider {
+    background: var(--bg-card-border, #5c3600);
+}
+
+body[data-theme="sigma"] #whiteboard.wb-blank-board {
+    background-color: var(--bg-canvas, #050505) !important;
+}
+
+body[data-theme="sigma"] #wb-laser-dot {
+    box-shadow:
+        0 0 0 1.5px #ffffff,
+        0 0 10px 4px var(--laser-color, #f2a100);
+}
+

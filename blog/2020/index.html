@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -2461,9 +2461,10 @@
 <li>Generative heuristics for layout selection (contiguous, chunked, etc.)</li>
 </ul>
 <p>Basically, all the complexity is hidden—H5CPP handles it. Two quick calls are your friends:</p>
-<p><code>pp
+<p>```cpp
 h5::write(file, dataset_name, std_vector);   // one-shot write
-h5::append(file, dataset_name, std_vector);  // fast chunked appends</code></p>
+h5::append(file, dataset_name, std_vector);  // fast chunked appends
+````</p>
 <p>The <code>h5::append</code> call writes using direct chunk-block IO, and hits the same throughput as the underlying filesystem—even fast single-event streams (like HFT tick bids).</p>
 <p>So you don’t have to reinvent this wheel—unless your goal is educational exploration. In that case: consider writing your own chunked pipeline using BLAS-3 style blocking for performance… but it’s hard, and I built this already 😉</p>
 <h3 id="quick-summary"><a class="toclink" href="../h5cpp-std-vector-read-write/#quick-summary">Quick Summary</a></h3>
@@ -2606,7 +2607,7 @@ When you're dealing with zero-copy serialization of C++ POD types into HDF5 pack
   <div class="md-post__content md-typeset">
     <h2 id="posted-problem"><a class="toclink" href="../hdf5-cross-compile-features/"><a href="https://forum.hdfgroup.org/t/cross-compiling-for-windows/6735">Posted problem</a></a></h2>
 <p>Hello, I’m trying to cross-compile HDF5 using BinaryBuilder 3, but it’s still not clear to me the setup to use. I’ve tried calling CMake in the following way:</p>
-<p>cmake .. -DCMAKE_INSTALL_PREFIX=<span CMAKE_TARGET_TOOLCHAIN="CMAKE_TARGET_TOOLCHAIN" class="arithmatex">\({prefix} \
+<p>cmake .. -DCMAKE_INSTALL_PREFIX=<span CMAKE_TARGET_TOOLCHAIN class="arithmatex">\({prefix} \
     -DCMAKE_TOOLCHAIN_FILE=\)</span> \
     -DHDF5_BUILD_CPP_LIB=OFF \
     -DONLY_SHARED_LIBS=ON \
@@ -3330,7 +3331,7 @@ Documenting that <code>N &lt;= H5O_SHMESG_MAX_NINDEXES</code> can help to preven
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
