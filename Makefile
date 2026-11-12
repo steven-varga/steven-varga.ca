@@ -23,6 +23,11 @@ serve: venv
 	@echo "Starting mkdocs server at $(BASE_URL)"
 	@. $(ACTIVATE); mkdocs serve --livereload --dev-addr=127.0.0.1:9000
 
+# Start Vite live dev server for Sigma AI slides on port 5173
+slides-dev:
+	@echo "Starting Sigma AI slides live server on http://0.0.0.0:5173"
+	npx vite docs/slides/sigma-ai --host 0.0.0.0 --port 5173
+
 # Build the site once
 build: venv
 	@. $(ACTIVATE); mkdocs build
