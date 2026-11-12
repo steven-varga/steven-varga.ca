@@ -2699,7 +2699,7 @@ struct frame_header_t {
             <!-- TOP LEVEL SLIDE 5: THE SIGMA AI ECOSYSTEM               -->
             <!-- ======================================================== -->
             <section>
-                <!-- 5.0 TOP-LEVEL HORIZONTAL SLIDE -->
+                <!-- 5.0 TOP-LEVEL HORIZONTAL SLIDE: ECOSYSTEM OVERVIEW -->
                 <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
@@ -2712,109 +2712,345 @@ struct frame_header_t {
                     </div>
 
                     <h2>The Sigma AI Ecosystem</h2>
-                    <h3>Decoupled Native Subsystems Engineered for Control & Speed</h3>
+                    <h3>High-Performance Native Infrastructure for Developer Agents</h3>
 
                     <div class="grid-3col" style="margin-top: 14px;">
                         <div class="card">
                             <div class="topology-header">
                                 <i class="fas fa-server" style="color:var(--solar-blue);"></i>
-                                <h4 style="margin:0; font-size: 0.9em;">sigma-aid</h4>
+                                <h4 style="margin:0; font-size: 0.9em;">sigma-aid (Daemon)</h4>
                             </div>
                             <p style="font-size: 0.74em; margin: 4px 0 0 0;">
-                                Native C++23 daemon core. Manages IPC transport, turn state machines, tool execution gating, and the durable tape.
+                                Native C++23 daemon core. Enforces POSIX user isolation, turn state machines, read-before-edit file gates, and an fsync'd tape.
                             </p>
                         </div>
 
                         <div class="card success">
                             <div class="topology-header">
-                                <i class="fas fa-user-lock" style="color:var(--solar-green);"></i>
-                                <h4 style="margin:0; font-size: 0.9em;">sigma-iam</h4>
+                                <i class="fas fa-desktop" style="color:var(--solar-green);"></i>
+                                <h4 style="margin:0; font-size: 0.9em;">sigma-ide (Theia)</h4>
                             </div>
                             <p style="font-size: 0.74em; margin: 4px 0 0 0;">
-                                Security & access control. Enforces POSIX user separation, role capability matrices, and read/write authority roots.
+                                Curated developer workbench. Sigma Console with streaming math/diagrams, live Agent Activity tree, and 35+ slash commands.
                             </p>
                         </div>
 
                         <div class="card accent">
                             <div class="topology-header">
-                                <i class="fas fa-random" style="color:var(--solar-cyan);"></i>
-                                <h4 style="margin:0; font-size: 0.9em;">sigma-proxy</h4>
+                                <i class="fas fa-magic" style="color:var(--solar-cyan);"></i>
+                                <h4 style="margin:0; font-size: 0.9em;">Setup Wizard</h4>
                             </div>
                             <p style="font-size: 0.74em; margin: 4px 0 0 0;">
-                                Multi-provider routing, dynamic candidate fallbacks, locked memory credentials, and token context admission gating.
+                                3-step browser and in-IDE onboarding at <code>127.0.0.1:8742/wizard</code>. Connects OAuth subscriptions, staff drafter, and ACLs.
                             </p>
                         </div>
 
                         <div class="card purple">
                             <div class="topology-header">
-                                <i class="fas fa-box-open" style="color:var(--solar-violet);"></i>
-                                <h4 style="margin:0; font-size: 0.9em;">sigma-mcp</h4>
+                                <i class="fas fa-random" style="color:var(--solar-violet);"></i>
+                                <h4 style="margin:0; font-size: 0.9em;">Provider Engine</h4>
                             </div>
                             <p style="font-size: 0.74em; margin: 4px 0 0 0;">
-                                Model Context Protocol runner. Sandboxes third-party MCP servers inside isolated stdio subprocess boundaries.
-                            </p>
-                        </div>
-
-                        <div class="card">
-                            <div class="topology-header">
-                                <i class="fas fa-desktop" style="color:var(--solar-blue);"></i>
-                                <h4 style="margin:0; font-size: 0.9em;">sigma-ide & acp</h4>
-                            </div>
-                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
-                                Standalone 473 MB Theia IDE distribution plus stdio JSON-RPC Agent Client Protocol bridges for Neovim and Emacs.
+                                Zero-markup BYOK routing across Anthropic, OpenAI, Gemini, DeepSeek, xAI, Kimi, and local Ollama with dynamic fallbacks.
                             </p>
                         </div>
 
                         <div class="card warning">
                             <div class="topology-header">
-                                <i class="fas fa-network-wired" style="color:var(--solar-orange);"></i>
-                                <h4 style="margin:0; font-size: 0.9em;">sigma-wsd & relay</h4>
+                                <i class="fas fa-code-branch" style="color:var(--solar-orange);"></i>
+                                <h4 style="margin:0; font-size: 0.9em;">Repository SCM</h4>
                             </div>
                             <p style="font-size: 0.74em; margin: 4px 0 0 0;">
-                                Lightweight ~3 MB SSH remote workspace agent and Slack Socket Mode bridge with local SQLite event staging.
+                                Interactive multi-branch SVG Commit Graph, ancestry lane tracing, 3-way conflict editor, and isolated Git worktree management.
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <div class="topology-header">
+                                <i class="fas fa-user-shield" style="color:var(--solar-blue);"></i>
+                                <h4 style="margin:0; font-size: 0.9em;">sigma-iam & ACP</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                Granular role capability matrices, skill privilege narrowing, and stdio JSON-RPC bridges for Neovim and Emacs.
                             </p>
                         </div>
                     </div>
 
                     <div class="down-cue">
-                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> to deep-dive into individual ecosystem components
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> to deep-dive into Daemon Core, Providers, Wizard, IDE, and SCM Graph
                     </div>
                 </section>
 
-                <!-- 5.1 VERTICAL DETAIL: sigma-aid Core -->
+                <!-- 5.1 VERTICAL DETAIL: sigma-aid Daemon Features & Execution Behavior -->
                 <section data-time="standard" data-audience="tech" style="text-align: left;">
-                    <h3><code>sigma-aid</code> &bull; Native C++23 Daemon Core</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><code>sigma-aid</code> &bull; Native Daemon Features &amp; Execution Behavior</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Deterministic turn state machine, workspace boundary enforcement, and transactional integrity in native C++23.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-green"><i class="fas fa-shield-alt"></i> POSIX Isolation</span>
+                            <span class="badge badge-cyan"><i class="fas fa-bolt"></i> C++23 Native</span>
+                        </div>
+                    </div>
+
                     <div class="multiCol">
                         <div class="col">
                             <div class="card">
-                                <h4>Turn State Machine Invariants</h4>
-                                <ul class="feature-list" style="font-size: 0.78em;">
-                                    <li><strong>Durable Before Effect:</strong> Session tape append fsyncs before external tool calls.</li>
-                                    <li><strong>Single Active Authority:</strong> One worker per work item eliminates race conditions.</li>
-                                    <li><strong>Attempt Fencing:</strong> Retries increment attempt tokens; stale callbacks are dropped.</li>
-                                    <li><strong>State Projection:</strong> Fast state derivation by sequential tape replays.</li>
+                                <h4><i class="fas fa-microchip" style="color:var(--solar-blue);"></i> Core Daemon Invariants</h4>
+                                <ul class="feature-list" style="font-size: 0.75em; margin: 0;">
+                                    <li><strong>Durable Before Effect:</strong> Session tape append fsyncs to disk before external mutations or tools run.</li>
+                                    <li><strong>Attempt Fencing:</strong> Retries increment attempt tokens; late-arriving or stale callbacks are silently dropped.</li>
+                                    <li><strong>Strict IPC Framing:</strong> Big-endian binary length-prefixed frames over local Unix Domain Sockets with <code>SO_PEERCRED</code> UID auth.</li>
+                                    <li><strong>Context &amp; Token Ceilings:</strong> Hard 64 KiB tool payload caps and automatic compaction epochs prevent attention decay.</li>
+                                </ul>
+                            </div>
+                            <div class="card warning" style="margin-top: 10px; margin-bottom: 0;">
+                                <h4><i class="fas fa-user-lock" style="color:var(--solar-orange);"></i> Memory Key Hardening</h4>
+                                <p style="font-size: 0.74em; margin: 0; color: var(--solar-base00);">
+                                    Provider API keys and OAuth tokens are locked in physical RAM with <code>mlock()</code> to prevent swapping to disk, and automatically zeroed on free.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card accent">
+                                <h4><i class="fas fa-balance-scale" style="color:var(--solar-cyan);"></i> Agent Execution Behavior</h4>
+                                <ul class="feature-list" style="font-size: 0.75em; margin: 0;">
+                                    <li><strong>Autonomous Perception-Action Loop:</strong> Perceive (workspace diffs, AST), Reason (structured plan), Act (tool call), Observe (compiler/test errors).</li>
+                                    <li><strong>Enforced Read-Before-Edit:</strong> Code edits fail immediately unless the file was actively inspected in the current session.</li>
+                                    <li><strong>Atomic File Replacement:</strong> Changes write to temporary files first and commit atomically via <code>rename()</code>.</li>
+                                    <li><strong>Human-in-the-Loop Gating:</strong> Irreversible operations (git reset, worktree deletion, PR merges) require explicit <code>approve_action</code>.</li>
+                                    <li><strong>Skill Narrowing Only:</strong> Loaded skills can narrow an agent's permissions, but can <em>never expand</em> them.</li>
                                 </ul>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 6px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for Supported Providers &amp; Multi-Provider Routing
+                    </div>
+                </section>
+
+                <!-- 5.2 VERTICAL DETAIL: Supported Providers & Connection Engine -->
+                <section data-time="standard" data-audience="all" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-random" style="color:var(--solar-yellow);"></i> Supported Providers &amp; Connection Engine</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Normalized model routing across commercial cloud and private inference with 0% token markup.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-orange"><i class="fas fa-key"></i> Direct BYOK</span>
+                            <span class="badge badge-green"><i class="fas fa-percentage"></i> 0% Token Markup</span>
+                        </div>
+                    </div>
+
+                    <div class="multiCol">
+                        <div class="col">
+                            <div class="card success">
+                                <h4><i class="fas fa-cloud" style="color:var(--solar-green);"></i> Normalized Provider Matrix</h4>
+                                <ul class="feature-list" style="font-size: 0.75em; margin: 0;">
+                                    <li><strong>Anthropic Claude:</strong> Claude 3.5 Sonnet, Claude 3.7 Sonnet (hybrid thinking), Claude 3 Opus, Haiku.</li>
+                                    <li><strong>OpenAI:</strong> GPT-4o, GPT-4.5, o1, o3, o3-mini with direct API key or OAuth device flow.</li>
+                                    <li><strong>Google Gemini:</strong> Gemini 2.0 Flash, Gemini 2.0 Pro with continuous OAuth subscription pooling.</li>
+                                    <li><strong>Moonshot &amp; DeepSeek:</strong> Kimi k2.5, DeepSeek V3, DeepSeek R1 reasoning models.</li>
+                                    <li><strong>xAI:</strong> Grok-2 and Grok-3 high-throughput coding endpoints.</li>
+                                    <li><strong>Local &amp; Open Weight:</strong> Native Ollama integration and private vLLM endpoints for air-gapped confidential operation.</li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="col">
                             <div class="card accent">
-                                <h4>Multi-Provider Routing</h4>
-                                <p style="font-size: 0.74em;">Dynamic candidate cascading in <code>roles.conf</code>:</p>
-                                <pre><code class="yaml">
+                                <h4><i class="fas fa-route" style="color:var(--solar-cyan);"></i> Routing &amp; Fallback Rules (roles.conf)</h4>
+                                <pre><code class="yaml"># Multi-candidate cascading with reasoning effort
 architect:
   mode: plan
   rule: sticky
   candidates:
-    - anthropic claude-opus-5-5,claude-sonnet-5-5 high,max
-    - codex gpt-6.1-terra
+    - anthropic claude-3-7-sonnet high,max
+    - codex o3-mini high
     - moonshot kimi-k2.5
-                                </code></pre>
+coder:
+  candidates:
+    - anthropic claude-3-5-sonnet
+    - deepseek deepseek-chat
+    - ollama qwen2.5-coder:32b</code></pre>
+                                <ul class="feature-list" style="font-size: 0.72em; margin-top: 6px;">
+                                    <li><strong>Dynamic Overrides:</strong> Per-task reasoning effort (<code>minimal</code> to <code>max</code>) overrides without mutating agent defaults.</li>
+                                    <li><strong>Live Quota Meters:</strong> Continuous tracking of 5-hour and weekly subscription limits.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+
+                    <div class="down-cue" style="margin-top: 6px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for the Browser &amp; IDE Setup Wizard
+                    </div>
                 </section>
 
-                <!-- 5.2 VERTICAL DETAIL: sigma-iam Role Capabilities -->
+                <!-- 5.3 VERTICAL DETAIL: Setup Wizard & Configuration Control Panel -->
+                <section data-time="standard" data-audience="all" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-magic" style="color:var(--solar-cyan);"></i> The Setup Wizard &amp; Control Panel</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Three-step onboarding at <code>127.0.0.1:8742/wizard</code> with automated POSIX workspace provisioning.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-cyan"><i class="fas fa-globe"></i> Web UI</span>
+                            <span class="badge badge-violet"><i class="fas fa-sliders-h"></i> Systemd Managed</span>
+                        </div>
+                    </div>
+
+                    <div class="grid-3col">
+                        <div class="card">
+                            <div class="topology-header">
+                                <span class="pitch-number" style="font-size: 1.1em; margin: 0 6px 0 0;">1</span>
+                                <h4 style="margin:0; font-size: 0.88em;">Subscriptions &amp; Keys</h4>
+                            </div>
+                            <ul class="feature-list" style="font-size: 0.72em; margin-top: 8px;">
+                                <li>Connect OAuth subscriptions via browser login (Google, OpenAI, Anthropic).</li>
+                                <li>Add direct API keys with immediate connectivity and credential validation.</li>
+                                <li>Inspect live 5-hour and weekly subscription quota meters and token spend bars.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card accent">
+                            <div class="topology-header">
+                                <span class="pitch-number" style="font-size: 1.1em; margin: 0 6px 0 0;">2</span>
+                                <h4 style="margin:0; font-size: 0.88em;">Virtual Office Staff</h4>
+                            </div>
+                            <ul class="feature-list" style="font-size: 0.72em; margin-top: 8px;">
+                                <li><strong>Arthur Staff Drafter:</strong> Four-question interactive builder tailoring roles to your team.</li>
+                                <li>Configures <code>roles.conf</code> and <code>personalities.conf</code> with positions (director, architect, coder, reviewer).</li>
+                                <li>Customizes brand voice, operating guidelines, and position routing policies.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card success">
+                            <div class="topology-header">
+                                <span class="pitch-number" style="font-size: 1.1em; margin: 0 6px 0 0;">3</span>
+                                <h4 style="margin:0; font-size: 0.88em;">Capabilities &amp; Tree</h4>
+                            </div>
+                            <ul class="feature-list" style="font-size: 0.72em; margin-top: 8px;">
+                                <li>Configures long-term semantic memory recall and vector embeddings.</li>
+                                <li>Enables microphone voice dictation and DataForSEO web search.</li>
+                                <li>Provisions <code>~/ai</code> workspace tree with POSIX permissions and git identity.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card warning" style="margin-top: 10px; margin-bottom: 0;">
+                        <p style="font-size: 0.74em; margin: 0; color: var(--solar-base00);">
+                            <strong>Reversible System Ledger:</strong> Setup actions write to <code>/var/lib/sigma-aid/installer/ledger.ndjson</code>. Running <code>sudo apt purge sigma-aid</code> cleanly rolls back all created users, ACLs, and files in reverse order.
+                        </p>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 6px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for sigma-ide Workbench Features
+                    </div>
+                </section>
+
+                <!-- 5.4 VERTICAL DETAIL: sigma-ide Workbench Features -->
+                <section data-time="deep" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-desktop" style="color:var(--solar-blue);"></i> <code>sigma-ide</code> &bull; Eclipse Theia Developer Workbench</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Integrated AI console, live mathematical derivation, diagram rendering, and agent activity monitoring.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-green"><i class="fas fa-feather-alt"></i> 473 MB Bundle</span>
+                            <span class="badge badge-cyan"><i class="fas fa-tachometer-alt"></i> 12s Startup</span>
+                        </div>
+                    </div>
+
+                    <div class="multiCol">
+                        <div class="col">
+                            <div class="card">
+                                <h4><i class="fas fa-terminal" style="color:var(--solar-blue);"></i> Sigma Console (Bottom Panel)</h4>
+                                <ul class="feature-list" style="font-size: 0.74em; margin: 0;">
+                                    <li><strong>Multi-Instance Tabs:</strong> Independent conversation streams dock side-by-side (<code>Ctrl+Shift+A</code>).</li>
+                                    <li><strong>Expandable Thinking Blocks:</strong> Real-time inspection of internal chain-of-thought steps while turns execute.</li>
+                                    <li><strong>LaTeX &amp; KaTeX Math:</strong> Live rendering of complex inline (<code>$...$</code>) and display (<code>$$...$$</code>) equations.</li>
+                                    <li><strong>Inline Diagrams &amp; Visualizations:</strong> Fenced <code>mermaid</code>, Graphviz <code>dot</code>, and <code>vega-lite</code> charts auto-render inline.</li>
+                                    <li><strong>35+ Fast Slash Commands:</strong> <code>/explain</code>, <code>/fix</code>, <code>/test</code>, <code>/plan</code>, <code>/review</code>, <code>/diff</code>, <code>/compact</code>, <code>/agent</code>.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card accent">
+                                <h4><i class="fas fa-stream" style="color:var(--solar-cyan);"></i> Agent Activity &amp; Workbench Tools</h4>
+                                <ul class="feature-list" style="font-size: 0.74em; margin: 0;">
+                                    <li><strong>Hierarchical Activity Tree:</strong> Live inspector showing every root tool call, child delegation, file touched, and query with status (<code>running</code>, <code>done</code>, <code>error</code>).</li>
+                                    <li><strong>Real-time Voice Dictation:</strong> In-browser speech-to-text directly from the microphone button via minted short-lived credentials.</li>
+                                    <li><strong>Curated Theia Core:</strong> 3.2x smaller than stock (473 MB vs 1.5 GB), 12.4s clean build, 20 curated developer extensions.</li>
+                                    <li><strong>ACP Stdio Bridges:</strong> First-class Neovim (<code>:SigmaChat</code>) and Emacs (<code>C-c a</code>) JSON-RPC bridges via <code>sigma-acp</code>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 6px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for SCM &amp; the Interactive Commit Graph
+                    </div>
+                </section>
+
+                <!-- 5.5 VERTICAL DETAIL: Repository SCM & Interactive Commit Graph -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-code-branch" style="color:var(--solar-orange);"></i> Repository SCM &amp; Multi-Branch Commit Graph</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                High-performance repository visualization and multi-agent Git worktree isolation.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <span class="badge badge-orange"><i class="fas fa-project-diagram"></i> SVG Topology</span>
+                            <span class="badge badge-green"><i class="fas fa-code-branch"></i> Worktrees</span>
+                        </div>
+                    </div>
+
+                    <div class="multiCol">
+                        <div class="col">
+                            <div class="card warning">
+                                <h4><i class="fas fa-project-diagram" style="color:var(--solar-orange);"></i> Interactive SVG Commit Graph</h4>
+                                <ul class="feature-list" style="font-size: 0.74em; margin: 0;">
+                                    <li><strong>Multi-Branch Topology:</strong> Renders parallel merge branches with author monograms, commit hashes, and messages.</li>
+                                    <li><strong>Lane Ancestry Tracing:</strong> Isolate complex branch lineages with interactive lane focus and background lane dimming.</li>
+                                    <li><strong>Granular Filtering:</strong> Filter merge commits, highlight active branch/tag refs, and track upstream remotes.</li>
+                                    <li><strong>One-Click Context Actions:</strong> Checkout commit, cherry-pick, revert, create branch/tag, and branch reset (soft/mixed/hard).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card success">
+                                <h4><i class="fas fa-folder-tree" style="color:var(--solar-green);"></i> Working Tree &amp; Worktree Isolation</h4>
+                                <ul class="feature-list" style="font-size: 0.74em; margin: 0;">
+                                    <li><strong>Structured Working Tree:</strong> Directory tree and flat list views with staged changes, unstaged diffs, and stashes.</li>
+                                    <li><strong>Three-Way Conflict Editor:</strong> In-place resolution of conflicting hunks before merge continuation.</li>
+                                    <li><strong>Multi-Agent Worktree Isolation:</strong> Autonomous agents operate in dedicated worktrees (<code>worktrees/&lt;repo&gt;/&lt;branch&gt;</code>), eliminating workspace collisions.</li>
+                                    <li><strong>External Build Caches:</strong> Builds point outside git worktrees (<code>/home/.../build/</code>) to keep git operations fast.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="down-cue" style="margin-top: 6px;">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for sigma-iam Role Capabilities &amp; Security Boundary
+                    </div>
+                </section>
+
+                <!-- 5.6 VERTICAL DETAIL: sigma-iam Role Capabilities -->
                 <section data-time="standard" data-audience="all" data-transition="convex">
                     <h2><code>sigma-iam</code> &bull; Role-Based Capabilities</h2>
                     <table class="spec-table">
@@ -2865,38 +3101,9 @@ architect:
                         </p>
                     </div>
                 </section>
-
-                <!-- 5.3 VERTICAL DETAIL: sigma-ide & sigma-acp -->
-                <section data-time="deep" data-audience="tech" style="text-align: left;">
-                    <h3><code>sigma-ide</code> & <code>sigma-acp</code> &bull; Developer Clients</h3>
-                    <div class="multiCol">
-                        <div class="col">
-                            <div class="card">
-                                <h4><code>sigma-ide</code> (Theia)</h4>
-                                <ul class="feature-list" style="font-size: 0.78em;">
-                                    <li>Published <code>@theia/*</code> packages (no monorepo bloat).</li>
-                                    <li>Bundle reduced 3.2x: 473 MB vs 1.5 GB.</li>
-                                    <li>Clean build time: ~12.4 seconds.</li>
-                                    <li>Curated 20 core developer extensions.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card accent">
-                                <h4><code>sigma-acp</code> (Neovim / Emacs)</h4>
-                                <ul class="feature-list" style="font-size: 0.78em;">
-                                    <li>Stdio JSON-RPC 2.0 streaming bridge.</li>
-                                    <li>Neovim: <code>:SigmaChat</code>, <code>:SigmaAsk</code>, visual selections.</li>
-                                    <li>Emacs: <code>C-c a</code> map, dedicated buffer sidebar.</li>
-                                    <li>Zero external runtime dependencies.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </section>
 
-            <!-- ======================================================== -->
+                        <!-- ======================================================== -->
             <!-- TOP LEVEL SLIDE 6: THE VIRTUAL OFFICE                   -->
             <!-- ======================================================== -->
             <section>
