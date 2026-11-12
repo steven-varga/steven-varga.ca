@@ -701,6 +701,26 @@
         }
 
 
+        /* Investor draft: a horizontal-only Business + five-minute route. */
+        .investor-slide { text-align: left; }
+        .investor-slide .pitch-kicker { font-size: .58em; text-transform: uppercase; letter-spacing: .12em; color: var(--accent-orange); margin-bottom: 18px; }
+        .investor-slide .pitch-lead { font-size: 1.06em; line-height: 1.45; margin: 16px 0 24px; }
+        .investor-slide .pitch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .investor-slide .pitch-grid .card { margin: 0; }
+        .investor-slide h4 { font-size: .9em; margin: 0 0 12px; color: var(--text-header); }
+        .investor-slide .card p { font-size: .78em; line-height: 1.45; margin: 0; }
+        .investor-slide .pitch-placeholder { border: 2px dashed var(--bg-card-border); border-radius: 8px; padding: 22px; color: var(--text-primary); font-size: .8em; }
+        .investor-slide .pitch-foot { font-size: .58em; color: var(--text-primary); margin-top: 20px; }
+        .investor-slide .pitch-progress { display: flex; gap: 8px; margin-bottom: 18px; }
+        .investor-slide .pitch-progress a { flex: 1; height: 5px; background: var(--bg-card-border); border-radius: 4px; }
+        .investor-slide .pitch-progress a[aria-current="step"] { background: var(--accent-primary); }
+        .investor-slide .pitch-number { color: var(--accent-primary); font-size: 1.5em; margin-bottom: 12px; }
+        .investor-slide .pitch-grid.five { grid-template-columns: repeat(5, 1fr); }
+        .investor-slide .pitch-grid.five .card { padding: 18px 12px; }
+        .investor-slide .pitch-grid.five h4 { font-size: .78em; }
+        .investor-slide .pitch-grid.five p { font-size: .71em; }
+        @media (prefers-reduced-motion: reduce) { .investor-slide * { animation: none !important; transition: none !important; } }
+
         .topology-header {
             display: flex;
             align-items: center;
@@ -742,8 +762,122 @@
 </head>
 <body>
     <canvas id="whiteboard" class="whiteboard" resize></canvas>
+    <canvas id="wb-laser-canvas"></canvas>
+    <div id="wb-laser-dot" class="wb-laser-dot"></div>
     <div class="reveal">
         <div class="slides">
+
+            <section id="investor-origin" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 1 / 7</div>
+                <h2>Sigma AI: From individual agents<br>to a virtual office</h2>
+                <p class="pitch-lead">AI can perform tasks. Organizations need a way<br>to delegate work with control.</p>
+                <div class="card accent"><h4><i class="fas fa-lightbulb" aria-hidden="true"></i> A practical starting question</h4><p>How could one engineer delegate meaningful work to AI while retaining control of the workspace?</p></div>
+                <div class="pitch-grid">
+                    <div class="card"><div class="pitch-number">01</div><h4>First experiment</h4><p>Explore useful delegation.<br><strong>[Start date pending]</strong></p></div>
+                    <div class="card"><div class="pitch-number">02</div><h4>Working system</h4><p>Bring roles, tools and context together.<br><strong>[Milestone validation pending]</strong></p></div>
+                    <div class="card"><div class="pitch-number">03</div><h4>Organizational deployment</h4><p>Test the approach with customers.<br><strong>Proposed next stage</strong></p></div>
+                </div>
+                <p class="pitch-foot">Provisional founding narrative. Founder confirmation and dated milestones are required.</p>
+                <aside class="notes">35 seconds. Draft positioning based on the planning discussion, not a confirmed founder interview. Replace this origin with Steven's firsthand account. Do not claim a customer deployment or completed milestone from this timeline.</aside>
+            </section>
+
+            <section id="investor-market" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 2 / 7</div>
+                <h2>A growing market needs an operational layer</h2>
+                <p class="pitch-lead">Our thesis: the opportunity includes organizing AI work,<br>alongside building and accessing better models.</p>
+                <div class="pitch-grid">
+                    <div class="card"><h4><i class="fas fa-server" aria-hidden="true"></i> Infrastructure</h4><p>Compute, chips and hosting.</p></div>
+                    <div class="card"><h4><i class="fas fa-brain" aria-hidden="true"></i> Models</h4><p>Reasoning and generation.</p></div>
+                    <div class="card success"><h4><i class="fas fa-sitemap" aria-hidden="true"></i> Organizational systems</h4><p>Delegation, workflows and controls.<br><strong>Sigma's proposed position.</strong></p></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
+                    <div class="pitch-placeholder"><i class="fas fa-chart-line" aria-hidden="true"></i> <strong>Market spending chart</strong><br>Source, scope, historical figures and forecast pending.</div>
+                    <div class="pitch-placeholder"><i class="fas fa-chart-bar" aria-hidden="true"></i> <strong>Adoption chart</strong><br>Source, population and comparable survey periods pending.</div>
+                </div>
+                <p class="pitch-foot">No market figures are asserted. Infrastructure investment, model revenue and customer spending must be measured separately.</p>
+                <aside class="notes">40 seconds. This is an investment hypothesis, not a market sizing finding. The empty chart panels are explicit editorial placeholders, not data. Add dated primary sources and distinguish actual figures from estimates and forecasts before external presentation. Size Sigma's addressable segment separately.</aside>
+            </section>
+
+            <section id="investor-trust" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 3 / 7</div>
+                <h2>The barrier between experimentation and deployment</h2>
+                <p class="pitch-lead">Trying AI is easy. Giving it access to valuable work<br>requires answers to harder questions.</p>
+                <div class="pitch-grid five">
+                    <div class="card danger"><div class="pitch-number"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h4>Security</h4><p>What can it access or disclose?</p></div>
+                    <div class="card"><div class="pitch-number"><i class="fas fa-check-double" aria-hidden="true"></i></div><h4>Engineering</h4><p>Can we independently verify its work?</p></div>
+                    <div class="card warning"><div class="pitch-number"><i class="fas fa-coins" aria-hidden="true"></i></div><h4>Finance</h4><p>How do we bound resource use?</p></div>
+                    <div class="card purple"><div class="pitch-number"><i class="fas fa-user-lock" aria-hidden="true"></i></div><h4>Confidentiality</h4><p>Can projects and users remain separated?</p></div>
+                    <div class="card accent"><div class="pitch-number"><i class="fas fa-history" aria-hidden="true"></i></div><h4>Operations</h4><p>Can we understand and recover from failures?</p></div>
+                </div>
+                <div class="card" style="margin-top:22px;"><p><strong>The commercial opening:</strong> make controlled delegation practical for organizations with valuable information.</p></div>
+                <p class="pitch-foot">Buyer concerns to validate in interviews. This slide makes no claim of guaranteed security or regulatory compliance.</p>
+                <aside class="notes">45 seconds. Explain the buyer questions rather than technical mechanisms. The user-supplied source audit motivates these concerns and the control categories. It does not prove demand, adoption barriers across the market, or effective controls in a specific deployment. Seek customer interview evidence.</aside>
+            </section>
+
+            <section id="investor-product" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 4 / 7</div>
+                <h2>What we have built: The virtual office</h2>
+                <p class="pitch-lead">An integrated approach to roles, working context and control.</p>
+                <div class="card accent" style="text-align:center;"><h4 style="margin:0;"><i class="fas fa-user-tie" aria-hidden="true"></i> Human oversight</h4></div>
+                <div class="pitch-grid" style="grid-template-columns:repeat(4,1fr);">
+                    <div class="card"><h4><i class="fas fa-users" aria-hidden="true"></i> Roles</h4><p>Assign work to named positions with defined responsibilities.</p></div>
+                    <div class="card"><h4><i class="fas fa-book-open" aria-hidden="true"></i> Procedures</h4><p>Reuse operating instructions and approved skills.</p></div>
+                    <div class="card"><h4><i class="fas fa-memory" aria-hidden="true"></i> Context</h4><p>Manage working history and retained knowledge.</p></div>
+                    <div class="card"><h4><i class="fas fa-lock" aria-hidden="true"></i> Controls</h4><p>Scope information access, tools and workspaces.</p></div>
+                </div>
+                <div class="pitch-grid" style="margin-top:22px;">
+                    <div class="pitch-placeholder"><strong>Development start</strong><br>[Verified date pending]</div>
+                    <div class="pitch-placeholder"><strong>Original source code</strong><br>[Line count pending]</div>
+                    <div class="pitch-placeholder"><strong>Product status</strong><br>[Release and demo validation pending]</div>
+                </div>
+                <p class="pitch-foot">Source: supplied Sigma source audit, v2.1.13; not operational testing. Controls depend on configuration. Code count must exclude dependencies and generated files.</p>
+                <aside class="notes">50 seconds. Present the virtual office as positioning supported by the supplied source audit. Owner-scoped memory and transcripts, workspace restrictions, roles and skills are the relevant categories. Do not claim project isolation automatically follows from a shared user identity. Deployment assurance requires configuration review and tests. Add a current screenshot and verified release demonstration. Code size measures engineering effort, not product quality, a moat, or replacement cost.</aside>
+            </section>
+
+            <section id="investor-customer" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 5 / 7</div>
+                <h2>Our first customer hypothesis:<br>Confidential technical R&amp;D</h2>
+                <p class="pitch-lead">Teams that want useful AI assistance<br>without unrestricted access to sensitive work.</p>
+                <div class="pitch-grid">
+                    <div class="card"><h4><i class="fas fa-microscope" aria-hidden="true"></i> The user</h4><p>Engineers and technical researchers handling confidential projects.</p></div>
+                    <div class="card"><h4><i class="fas fa-user-tie" aria-hidden="true"></i> The buyer</h4><p>Head of engineering or R&amp;D, with security and IT approval.</p></div>
+                    <div class="card success"><h4><i class="fas fa-tasks" aria-hidden="true"></i> The first workflow</h4><p>A bounded engineering task with independently checked outputs.</p></div>
+                </div>
+                <div class="card purple" style="margin-top:22px;"><p><strong>Possible expansion markets:</strong> capital management and government. Each requires separate customer discovery and assurance requirements.</p></div>
+                <p class="pitch-foot">Target segment only. No customer, contract, endorsement or procurement readiness is implied.</p>
+                <aside class="notes">45 seconds. This ideal customer profile is a hypothesis from the planning discussion, not validated research. Confirm buyer access, urgency, purchasing process, integration burden and willingness to pay. Do not describe target organizations as prospects without actual contact, or as customers without an agreement.</aside>
+            </section>
+
+            <section id="investor-business" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 6 / 7</div>
+                <h2>From working product to repeatable business</h2>
+                <p class="pitch-lead">Prove a valuable workflow. Earn adoption. Expand on evidence.</p>
+                <div class="pitch-grid five">
+                    <div class="card"><div class="pitch-number">01</div><h4>Design partners</h4><p>Recruit within the initial segment.</p></div>
+                    <div class="card"><div class="pitch-number">02</div><h4>Agreed evaluation</h4><p>Define scope and success criteria.</p></div>
+                    <div class="card"><div class="pitch-number">03</div><h4>Measured results</h4><p>Check value and operational fit.</p></div>
+                    <div class="card"><div class="pitch-number">04</div><h4>Paid deployment</h4><p>Seek conversion on approved terms.</p></div>
+                    <div class="card"><div class="pitch-number">05</div><h4>Expansion</h4><p>Extend where value is demonstrated.</p></div>
+                </div>
+                <div class="pitch-placeholder" style="margin-top:22px;"><strong>Evidence to add:</strong> paying customers [confirm] · agreed evaluations [confirm] · qualified prospects [confirm]<br><strong>Commercial model:</strong> [Proposed terms pending approval]</div>
+                <p class="pitch-foot">Proposed commercial path, not reported traction. No revenue forecast or conversion rate is asserted.</p>
+                <aside class="notes">40 seconds. Customer categories must stay distinct. Unknown is not zero, and a target is not a prospect. Pricing and commercial terms need approval. Explain the route to validation without promising conversion, sales cycle, or dates.</aside>
+            </section>
+
+            <section id="investor-investment" class="investor-slide" data-deck="investor" data-audience="biz" data-time="flash">
+                <div class="pitch-kicker">Investor draft · assumptions to validate · 7 / 7</div>
+                <h2>Turn engineering progress<br>into customer evidence</h2>
+                <p class="pitch-lead">Proposed investment priorities for the next stage.</p>
+                <div class="pitch-grid" style="grid-template-columns:repeat(4,1fr);">
+                    <div class="card"><h4><i class="fas fa-handshake" aria-hidden="true"></i> Customer validation</h4><p>Evaluations and onboarding.</p></div>
+                    <div class="card"><h4><i class="fas fa-box-open" aria-hidden="true"></i> Deployment</h4><p>Packaging and documentation.</p></div>
+                    <div class="card"><h4><i class="fas fa-shield-alt" aria-hidden="true"></i> Assurance</h4><p>Security testing and operational validation.</p></div>
+                    <div class="card"><h4><i class="fas fa-chart-line" aria-hidden="true"></i> Commercial development</h4><p>A focused route to initial customers.</p></div>
+                </div>
+                <div class="pitch-placeholder" style="margin-top:20px;"><strong>Funding request:</strong> [Amount pending] &nbsp; <strong>Runway:</strong> [Pending]<br><strong>Milestones:</strong> [Customer, product and commercial targets pending]</div>
+                <div class="card accent" style="margin-top:18px;"><p><strong>Our investment thesis:</strong> organizations will need a controlled way to put capable models to work.</p></div>
+                <aside class="notes">45 seconds. These are proposed uses of funds, not approved commitments. Add founder-confirmed funding amount, runway assumptions and measurable milestones. No return on investment, revenue, compliance status or delivery date is promised. Total suggested talk time across the seven slides is 300 seconds.</aside>
+            </section>
 
             <!-- ======================================================== -->
             <!-- TOP LEVEL SLIDE 0: TITLE & WELCOME                      -->
@@ -789,7 +923,7 @@
             <!-- ======================================================== -->
             <section>
                 <!-- 1.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-time="flash" data-audience="all" data-transition="convex">
+                <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step active"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -2032,7 +2166,7 @@
                 </section>
 
                 <!-- 3.5 VERTICAL DETAIL: Risk 5 — Compartmentalization for R&D, Capital & Gov -->
-                <section data-time="flash" data-audience="all" style="text-align: left;">
+                <section data-time="flash" data-time-biz="standard" data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
                             <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-layer-group" style="color:var(--solar-magenta);"></i> Risk 5: Cross-Project Contamination &amp; Memory Bleed</h3>
@@ -2131,7 +2265,7 @@
             <!-- ======================================================== -->
             <section>
                 <!-- 4.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-time="flash" data-audience="all" data-transition="convex">
+                <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -2253,7 +2387,7 @@ struct frame_header_t {
             <!-- ======================================================== -->
             <section>
                 <!-- 5.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-time="flash" data-audience="all" data-transition="convex">
+                <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -2674,7 +2808,7 @@ architect:
             <!-- ======================================================== -->
             <section>
                 <!-- 6.0 TOP-LEVEL HORIZONTAL SLIDE -->
-                <section data-time="flash" data-audience="all" data-transition="convex">
+                <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
@@ -3119,14 +3253,41 @@ if (!is_entitled) {
             let currentLens = 'all';
             let currentTime = 'standard';
 
+            // Keep the complete slide bag outside Reveal's mutable navigation grid.
+            const slidesRoot = document.querySelector('.reveal .slides');
+            const slideBag = Array.from(slidesRoot.children).filter(el => el.tagName === 'SECTION').map(top => ({
+                top,
+                children: Array.from(top.children).filter(el => el.tagName === 'SECTION')
+            }));
+            const investorSlides = slideBag.filter(entry => entry.top.dataset.deck === 'investor').map(entry => entry.top);
+            investorSlides.forEach((slide, index) => {
+                const progress = document.createElement('nav');
+                progress.className = 'pitch-progress';
+                progress.setAttribute('aria-label', 'Investor pitch slides');
+                investorSlides.forEach((target, targetIndex) => {
+                    const link = document.createElement('a');
+                    link.href = '#/' + target.id;
+                    link.setAttribute('aria-label', (targetIndex + 1) + '. ' + target.querySelector('h2').textContent);
+                    if (index === targetIndex) link.setAttribute('aria-current', 'step');
+                    progress.appendChild(link);
+                });
+                slide.prepend(progress);
+            });
+
             function isSlideVisible(el, lens, time) {
+                const investorRoute = lens === 'biz' && time === 'flash';
+                if (el.dataset.deck === 'investor') return investorRoute;
+                if (investorRoute) return false;
                 // Audience check
                 const audStr = el.getAttribute('data-audience') || 'all';
                 const auds = audStr.split(',').map(s => s.trim());
                 const audMatch = (lens === 'all') || auds.includes('all') || auds.includes(lens);
 
                 // Time budget check (inclusive hierarchy: flash <= standard <= deep)
-                const timeStr = el.getAttribute('data-time') || 'standard';
+                // A per-audience override (data-time-biz, data-time-tech) wins over data-time,
+                // so one audience can drop a slide from its short deck without touching the others.
+                const timeStr = (lens !== 'all' && el.getAttribute('data-time-' + lens))
+                    || el.getAttribute('data-time') || 'standard';
                 let timeMatch = true;
                 if (time === 'flash') {
                     timeMatch = (timeStr === 'flash');
@@ -3173,29 +3334,19 @@ if (!is_entitled) {
                     btn.classList.toggle('active', btn.dataset.time === currentTime);
                 });
 
-                // Filter top sections and child sections
-                const topSections = document.querySelectorAll('.reveal .slides > section');
-                topSections.forEach(topSec => {
-                    const childSections = topSec.querySelectorAll('section');
-                    if (childSections.length === 0) {
-                        const visible = isSlideVisible(topSec, currentLens, currentTime);
-                        if (visible) topSec.removeAttribute('data-visibility');
-                        else topSec.setAttribute('data-visibility', 'hidden');
+                // Rebuild from retained nodes so excluded slides can return on a later switch.
+                const previousSlide = Reveal.getCurrentSlide();
+                const visibleTopSections = [];
+                slideBag.forEach(({ top, children }) => {
+                    if (children.length === 0) {
+                        if (isSlideVisible(top, currentLens, currentTime)) visibleTopSections.push(top);
                     } else {
-                        let anyVisibleChild = false;
-                        childSections.forEach(child => {
-                            const visible = isSlideVisible(child, currentLens, currentTime);
-                            if (visible) {
-                                child.removeAttribute('data-visibility');
-                                anyVisibleChild = true;
-                            } else {
-                                child.setAttribute('data-visibility', 'hidden');
-                            }
-                        });
-                        if (anyVisibleChild) topSec.removeAttribute('data-visibility');
-                        else topSec.setAttribute('data-visibility', 'hidden');
+                        const visibleChildren = children.filter(child => isSlideVisible(child, currentLens, currentTime));
+                        top.replaceChildren(...visibleChildren);
+                        if (visibleChildren.length) visibleTopSections.push(top);
                     }
                 });
+                slidesRoot.replaceChildren(...visibleTopSections);
 
                 // Dynamically update ElapsedTimeBar if active
                 if (window.ElapsedTimeBar && typeof window.ElapsedTimeBar.setAllottedTime === 'function') {
@@ -3205,9 +3356,12 @@ if (!is_entitled) {
                 // Synchronize Reveal navigation grid & progress counter
                 if (typeof Reveal !== 'undefined' && Reveal.sync) {
                     Reveal.sync();
-                    const currentSlide = Reveal.getCurrentSlide();
-                    if (currentSlide && currentSlide.getAttribute('data-visibility') === 'hidden') {
-                        Reveal.slide(Reveal.getIndices().h, 0);
+                    const namedId = window.location.hash.replace(/^#\//, '');
+                    const namedTarget = Array.from(slidesRoot.querySelectorAll('section[id]')).find(slide => slide.id === namedId);
+                    const target = namedTarget || (previousSlide && slidesRoot.contains(previousSlide) ? previousSlide : visibleTopSections[0]);
+                    if (target) {
+                        const indices = Reveal.getIndices(target);
+                        Reveal.slide(indices.h, indices.v || 0);
                     }
                 }
             }

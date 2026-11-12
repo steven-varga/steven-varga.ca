@@ -1,6 +1,7 @@
 /**
  * Whiteboard plugin for Reveal.js using Paper.js
- * High-performance vector drawing layer for notes on slides and full blank chalkboard.
+ * High-performance vector drawing layer for notes on slides, highlighter marker,
+ * glowing laser pointer with vanishing trail, and full blank chalkboard.
  */
 
 let Whiteboard = {
@@ -8,10 +9,15 @@ let Whiteboard = {
     init: function(deck) {
         init_whiteboard(deck);
     },
+    select_tool: function(tool) { if (window._wb) window._wb.select_tool(tool); },
     toggle_canvas: function() { if (window._wb) window._wb.toggle_canvas(); },
     toggle_board: function() { if (window._wb) window._wb.toggle_board(); },
+    toggle_pen: function() { if (window._wb) window._wb.select_tool('pen'); },
+    toggle_marker: function() { if (window._wb) window._wb.select_tool('marker'); },
+    toggle_laser: function() { if (window._wb) window._wb.select_tool('laser'); },
     color_next: function() { if (window._wb) window._wb.color_next(); },
     color_prev: function() { if (window._wb) window._wb.color_prev(); },
+    set_color: function(idx) { if (window._wb) window._wb.set_color(idx); },
     clear: function() { if (window._wb) window._wb.clear(); },
     download: function() { if (window._wb) window._wb.download(); },
 };
@@ -28,11 +34,19 @@ const init_whiteboard = function(Reveal) {
     ];
 
     let color_idx = 0;
-    let stroke_width = 3.5;
+    let pen_stroke_width = 3.5;
+    let marker_stroke_width = 22;
+    let current_tool = "pen"; // "pen" | "marker" | "laser"
     let is_overlay = false;
     let is_board = false;
     let active_path = null;
     const layers = new Map();
+
+    // Laser pointer state
+    let laser_drawing = false;
+    let laser_trail = []; // Array of { x, y, time }
+    let laser_anim_id = null;
+    const TRAIL_DURATION = 1200; // ms
 
     const canvas = document.getElementById("whiteboard");
     if (!canvas) {
@@ -40,15 +54,45 @@ const init_whiteboard = function(Reveal) {
         return;
     }
 
-    // Initialize Paper.js on canvas
+    // Initialize Paper.js on whiteboard canvas
     paper.setup(canvas);
     const project = paper.project;
 
-    // Create toolbar UI
+    // Create or locate dedicated laser canvas for high-performance glowing trails
+    let laserCanvas = document.getElementById("wb-laser-canvas");
+    if (!laserCanvas) {
+        laserCanvas = document.createElement("canvas");
+        laserCanvas.id = "wb-laser-canvas";
+        laserCanvas.className = "wb-laser-canvas";
+        document.body.appendChild(laserCanvas);
+    }
+    const laserCtx = laserCanvas.getContext("2d");
+
+    // Create or locate laser pointer dot element
+    let laserDot = document.getElementById("wb-laser-dot");
+    if (!laserDot) {
+        laserDot = document.createElement("div");
+        laserDot.id = "wb-laser-dot";
+        laserDot.className = "wb-laser-dot";
+        document.body.appendChild(laserDot);
+    }
+
+    function resize_laser_canvas() {
+        const dpr = window.devicePixelRatio || 1;
+        laserCanvas.width = window.innerWidth * dpr;
+        laserCanvas.height = window.innerHeight * dpr;
+        laserCanvas.style.width = window.innerWidth + "px";
+        laserCanvas.style.height = window.innerHeight + "px";
+    }
+    resize_laser_canvas();
+
+    // Create presenter toolbar UI
     const toolbar = document.createElement("div");
     toolbar.className = "whiteboard-toolbar";
     toolbar.innerHTML = `
-        <button class="wb-btn wb-pen-btn" title="Toggle Drawing Layer (C)"><i class="fas fa-pen"></i><span class="wb-color-badge" style="background:${palette[0].hex};"></span></button>
+        <button class="wb-btn wb-tool-btn wb-pen-btn" data-tool="pen" title="Pen (P)"><i class="fas fa-pen"></i><span class="wb-color-badge wb-pen-badge" style="background:${palette[0].hex};"></span></button>
+        <button class="wb-btn wb-tool-btn wb-marker-btn" data-tool="marker" title="Marker / Highlighter (M)"><i class="fas fa-highlighter"></i><span class="wb-color-badge wb-marker-badge" style="background:${palette[0].hex};"></span></button>
+        <button class="wb-btn wb-tool-btn wb-laser-btn" data-tool="laser" title="Laser Pointer (L)"><i class="fas fa-bullseye"></i><span class="wb-color-badge wb-laser-badge" style="background:${palette[0].hex};"></span></button>
         <button class="wb-btn wb-board-btn" title="Toggle Blank Board (B)"><i class="fas fa-chalkboard"></i></button>
         <div class="wb-palette">
             ${palette.map((c, i) => `<button class="wb-color-dot ${i === 0 ? 'active' : ''}" data-idx="${i}" style="background:${c.hex};" title="${c.name} (X/Y)"></button>`).join('')}
@@ -59,18 +103,43 @@ const init_whiteboard = function(Reveal) {
     document.body.appendChild(toolbar);
 
     const penBtn = toolbar.querySelector(".wb-pen-btn");
+    const markerBtn = toolbar.querySelector(".wb-marker-btn");
+    const laserBtn = toolbar.querySelector(".wb-laser-btn");
     const boardBtn = toolbar.querySelector(".wb-board-btn");
     const clearBtn = toolbar.querySelector(".wb-clear-btn");
     const downloadBtn = toolbar.querySelector(".wb-download-btn");
-    const colorBadge = toolbar.querySelector(".wb-color-badge");
+    const penBadge = toolbar.querySelector(".wb-pen-badge");
+    const markerBadge = toolbar.querySelector(".wb-marker-badge");
+    const laserBadge = toolbar.querySelector(".wb-laser-badge");
     const colorDots = toolbar.querySelectorAll(".wb-color-dot");
 
     function get_current_color() {
         return palette[color_idx].hex;
     }
 
+    function hexToRgb(hex) {
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    function update_laser_color() {
+        const hex = get_current_color();
+        laserDot.style.setProperty("--laser-color", hex);
+        const rgb = hexToRgb(hex);
+        if (rgb) {
+            laserDot.style.setProperty("--laser-glow", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+        }
+    }
+
     function update_ui() {
-        if (is_overlay || is_board) {
+        const is_active = is_overlay || is_board;
+        if (is_active) {
             canvas.classList.add("wb-active");
             toolbar.classList.add("wb-active");
         } else {
@@ -86,13 +155,42 @@ const init_whiteboard = function(Reveal) {
             boardBtn.classList.remove("active");
         }
 
-        if (is_overlay) {
-            penBtn.classList.add("active");
-        } else {
-            penBtn.classList.remove("active");
+        // Tool classes on canvas
+        canvas.classList.remove("wb-tool-pen", "wb-tool-marker", "wb-tool-laser");
+        if (is_active) {
+            canvas.classList.add(`wb-tool-${current_tool}`);
         }
 
-        colorBadge.style.backgroundColor = get_current_color();
+        // Active tool highlights
+        penBtn.classList.toggle("active", is_active && current_tool === "pen");
+        markerBtn.classList.toggle("active", is_active && current_tool === "marker");
+        laserBtn.classList.toggle("active", is_active && current_tool === "laser");
+
+        // Laser pointer state
+        if (is_active && current_tool === "laser") {
+            update_laser_color();
+        } else {
+            laserDot.classList.remove("visible", "pulsing");
+            laser_drawing = false;
+            laser_trail = [];
+            if (laserCtx) {
+                laserCtx.save();
+                laserCtx.setTransform(1, 0, 0, 1, 0, 0);
+                laserCtx.clearRect(0, 0, laserCanvas.width, laserCanvas.height);
+                laserCtx.restore();
+            }
+            if (laser_anim_id) {
+                cancelAnimationFrame(laser_anim_id);
+                laser_anim_id = null;
+            }
+        }
+
+        // Color badges
+        const currentColor = get_current_color();
+        if (penBadge) penBadge.style.backgroundColor = currentColor;
+        if (markerBadge) markerBadge.style.backgroundColor = currentColor;
+        if (laserBadge) laserBadge.style.backgroundColor = currentColor;
+
         colorDots.forEach((dot, idx) => {
             if (idx === color_idx) dot.classList.add("active");
             else dot.classList.remove("active");
@@ -108,6 +206,15 @@ const init_whiteboard = function(Reveal) {
         const page_id = hash();
         // Hide all layers
         project.layers.forEach(l => { l.visible = false; });
+
+        // Reset any transient laser trail on slide change
+        laser_trail = [];
+        if (laserCtx) {
+            laserCtx.save();
+            laserCtx.setTransform(1, 0, 0, 1, 0, 0);
+            laserCtx.clearRect(0, 0, laserCanvas.width, laserCanvas.height);
+            laserCtx.restore();
+        }
 
         if (is_board) {
             // Shared board layer
@@ -133,6 +240,20 @@ const init_whiteboard = function(Reveal) {
         layer.visible = true;
         layer.activate();
         paper.view.draw();
+    }
+
+    function select_tool(tool) {
+        if (is_board) {
+            current_tool = tool;
+        } else if (is_overlay && current_tool === tool) {
+            // Clicking current active tool toggles overlay off
+            is_overlay = false;
+        } else {
+            is_overlay = true;
+            current_tool = tool;
+        }
+        update_ui();
+        change_page();
     }
 
     function toggle_canvas() {
@@ -171,6 +292,13 @@ const init_whiteboard = function(Reveal) {
             project.activeLayer.removeChildren();
             paper.view.draw();
         }
+        laser_trail = [];
+        if (laserCtx) {
+            laserCtx.save();
+            laserCtx.setTransform(1, 0, 0, 1, 0, 0);
+            laserCtx.clearRect(0, 0, laserCanvas.width, laserCanvas.height);
+            laserCtx.restore();
+        }
     }
 
     function download() {
@@ -181,7 +309,9 @@ const init_whiteboard = function(Reveal) {
     }
 
     // Attach button events
-    penBtn.addEventListener("click", e => { e.stopPropagation(); toggle_canvas(); });
+    penBtn.addEventListener("click", e => { e.stopPropagation(); select_tool("pen"); });
+    markerBtn.addEventListener("click", e => { e.stopPropagation(); select_tool("marker"); });
+    laserBtn.addEventListener("click", e => { e.stopPropagation(); select_tool("laser"); });
     boardBtn.addEventListener("click", e => { e.stopPropagation(); toggle_board(); });
     clearBtn.addEventListener("click", e => { e.stopPropagation(); clear(); });
     downloadBtn.addEventListener("click", e => { e.stopPropagation(); download(); });
@@ -192,7 +322,91 @@ const init_whiteboard = function(Reveal) {
         });
     });
 
-    // Pointer drawing logic
+    // Toolbar mouse hover handling for laser pointer
+    toolbar.addEventListener("mouseenter", () => {
+        laserDot.classList.remove("visible");
+    });
+    toolbar.addEventListener("mouseleave", () => {
+        if ((is_overlay || is_board) && current_tool === "laser") {
+            laserDot.classList.add("visible");
+        }
+    });
+
+    // Vanishing laser trail animation loop
+    function start_laser_loop() {
+        if (!laser_anim_id) {
+            laser_anim_id = requestAnimationFrame(render_laser);
+        }
+    }
+
+    function render_laser() {
+        const now = performance.now();
+        // Prune expired points
+        while (laser_trail.length > 0 && (now - laser_trail[0].time) >= TRAIL_DURATION) {
+            laser_trail.shift();
+        }
+
+        const dpr = window.devicePixelRatio || 1;
+        laserCtx.save();
+        laserCtx.setTransform(1, 0, 0, 1, 0, 0);
+        laserCtx.clearRect(0, 0, laserCanvas.width, laserCanvas.height);
+        laserCtx.scale(dpr, dpr);
+
+        if (laser_trail.length > 1) {
+            const hex = get_current_color();
+            const rgb = hexToRgb(hex) || { r: 220, g: 50, b: 47 };
+
+            laserCtx.lineCap = "round";
+            laserCtx.lineJoin = "round";
+
+            for (let i = 1; i < laser_trail.length; i++) {
+                const p0 = laser_trail[i - 1];
+                const p1 = laser_trail[i];
+                const age = (now - p1.time) / TRAIL_DURATION;
+                if (age >= 1) continue;
+
+                const life = Math.max(0, 1 - age); // 1.0 down to 0.0
+
+                // 1. Radiant outer bloom
+                laserCtx.beginPath();
+                laserCtx.moveTo(p0.x, p0.y);
+                laserCtx.lineTo(p1.x, p1.y);
+                laserCtx.lineWidth = 14 * life;
+                laserCtx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.32 * life})`;
+                laserCtx.shadowColor = hex;
+                laserCtx.shadowBlur = 18 * life;
+                laserCtx.stroke();
+
+                // 2. Focused vibrant core
+                laserCtx.beginPath();
+                laserCtx.moveTo(p0.x, p0.y);
+                laserCtx.lineTo(p1.x, p1.y);
+                laserCtx.lineWidth = 6 * life;
+                laserCtx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.85 * life})`;
+                laserCtx.shadowColor = hex;
+                laserCtx.shadowBlur = 8 * life;
+                laserCtx.stroke();
+
+                // 3. Hot white center filament
+                laserCtx.beginPath();
+                laserCtx.moveTo(p0.x, p0.y);
+                laserCtx.lineTo(p1.x, p1.y);
+                laserCtx.lineWidth = 2.4 * life;
+                laserCtx.strokeStyle = `rgba(255, 255, 255, ${0.95 * life})`;
+                laserCtx.shadowColor = "#ffffff";
+                laserCtx.shadowBlur = 4 * life;
+                laserCtx.stroke();
+            }
+
+            laserCtx.restore();
+            laser_anim_id = requestAnimationFrame(render_laser);
+        } else {
+            laserCtx.restore();
+            laser_anim_id = null;
+        }
+    }
+
+    // Pointer coordinates helper
     function get_point(evt) {
         const rect = canvas.getBoundingClientRect();
         return new paper.Point(evt.clientX - rect.left, evt.clientY - rect.top);
@@ -204,25 +418,100 @@ const init_whiteboard = function(Reveal) {
         if (toolbar.contains(evt.target)) return;
 
         evt.preventDefault();
+
+        // Laser pointer mode: click activated vanishing trail
+        if (current_tool === "laser") {
+            laser_drawing = true;
+            laserDot.classList.add("pulsing");
+            laser_trail.push({ x: evt.clientX, y: evt.clientY, time: performance.now() });
+            start_laser_loop();
+            return;
+        }
+
+        // Marker (Highlighter)
+        if (current_tool === "marker") {
+            const markerColor = new paper.Color(get_current_color());
+            markerColor.alpha = 0.38; // Translucent highlighter ink
+            active_path = new paper.Path({
+                segments: [get_point(evt)],
+                strokeColor: markerColor,
+                strokeWidth: marker_stroke_width,
+                strokeCap: "round",
+                strokeJoin: "round"
+            });
+            return;
+        }
+
+        // Pen
         active_path = new paper.Path({
             segments: [get_point(evt)],
             strokeColor: get_current_color(),
-            strokeWidth: stroke_width,
+            strokeWidth: pen_stroke_width,
             strokeCap: "round",
             strokeJoin: "round"
         });
     }
 
     function on_pointer_move(evt) {
-        if ((!is_overlay && !is_board) || !active_path) return;
+        const is_active = is_overlay || is_board;
+        if (!is_active) return;
+
+        // Laser pointer: normal mode (visibility when mouse moves)
+        if (current_tool === "laser") {
+            laserDot.style.left = evt.clientX + "px";
+            laserDot.style.top = evt.clientY + "px";
+
+            if (!toolbar.contains(evt.target)) {
+                laserDot.classList.add("visible");
+            } else {
+                laserDot.classList.remove("visible");
+            }
+
+            // Mode 2: click activated vanishing trail
+            if (laser_drawing) {
+                evt.preventDefault();
+                const now = performance.now();
+                if (laser_trail.length > 0) {
+                    const last = laser_trail[laser_trail.length - 1];
+                    const dist = Math.hypot(evt.clientX - last.x, evt.clientY - last.y);
+                    if (dist > 8) {
+                        const steps = Math.min(Math.floor(dist / 6), 5);
+                        for (let s = 1; s <= steps; s++) {
+                            const factor = s / (steps + 1);
+                            laser_trail.push({
+                                x: last.x + (evt.clientX - last.x) * factor,
+                                y: last.y + (evt.clientY - last.y) * factor,
+                                time: now - (steps - s) * 2
+                            });
+                        }
+                    }
+                }
+                laser_trail.push({ x: evt.clientX, y: evt.clientY, time: now });
+                start_laser_loop();
+            }
+            return;
+        }
+
+        // Pen / Marker drawing
+        if (!active_path) return;
         evt.preventDefault();
         active_path.add(get_point(evt));
         paper.view.draw();
     }
 
     function on_pointer_up(evt) {
+        if (current_tool === "laser") {
+            laser_drawing = false;
+            laserDot.classList.remove("pulsing");
+            return;
+        }
+
         if (active_path) {
-            active_path.simplify(8);
+            if (current_tool === "marker") {
+                active_path.simplify(10);
+            } else {
+                active_path.simplify(8);
+            }
             active_path = null;
             paper.view.draw();
         }
@@ -231,6 +520,14 @@ const init_whiteboard = function(Reveal) {
     canvas.addEventListener("mousedown", on_pointer_down);
     window.addEventListener("mousemove", on_pointer_move);
     window.addEventListener("mouseup", on_pointer_up);
+
+    window.addEventListener("mouseleave", () => {
+        laserDot.classList.remove("visible");
+        if (laser_drawing) {
+            laser_drawing = false;
+            laserDot.classList.remove("pulsing");
+        }
+    });
 
     // Touch support for iPad / touch displays
     canvas.addEventListener("touchstart", e => {
@@ -246,6 +543,7 @@ const init_whiteboard = function(Reveal) {
     // Resize handling
     window.addEventListener("resize", () => {
         paper.view.viewSize = new paper.Size(window.innerWidth, window.innerHeight);
+        resize_laser_canvas();
     });
 
     // Reveal.js event hooks
@@ -254,15 +552,18 @@ const init_whiteboard = function(Reveal) {
     Reveal.on("fragmenthidden", () => change_page());
 
     // Register Key Bindings with Reveal
-    Reveal.addKeyBinding({ keyCode: 67, key: 'C', description: 'Toggle Whiteboard Canvas' }, toggle_canvas);
+    Reveal.addKeyBinding({ keyCode: 80, key: 'P', description: 'Select Pen Tool' }, () => select_tool('pen'));
+    Reveal.addKeyBinding({ keyCode: 77, key: 'M', description: 'Select Marker Tool' }, () => select_tool('marker'));
+    Reveal.addKeyBinding({ keyCode: 76, key: 'L', description: 'Select Laser Pointer Tool' }, () => select_tool('laser'));
+    Reveal.addKeyBinding({ keyCode: 67, key: 'C', description: 'Toggle Drawing Canvas' }, toggle_canvas);
     Reveal.addKeyBinding({ keyCode: 66, key: 'B', description: 'Toggle Blank Blackboard' }, toggle_board);
-    Reveal.addKeyBinding({ keyCode: 88, key: 'X', description: 'Next Pen Color' }, color_next);
-    Reveal.addKeyBinding({ keyCode: 89, key: 'Y', description: 'Previous Pen Color' }, color_prev);
+    Reveal.addKeyBinding({ keyCode: 88, key: 'X', description: 'Next Color' }, color_next);
+    Reveal.addKeyBinding({ keyCode: 89, key: 'Y', description: 'Previous Color' }, color_prev);
     Reveal.addKeyBinding({ keyCode: 46, key: 'DEL', description: 'Clear Drawings on Slide' }, clear);
     Reveal.addKeyBinding({ keyCode: 8, key: 'BACKSPACE', description: 'Clear Drawings on Slide' }, clear);
     Reveal.addKeyBinding({ keyCode: 68, key: 'D', description: 'Download Slide Drawing' }, download);
 
-    // ESC closes drawing or blank board
+    // ESC closes drawing, laser or blank board
     window.addEventListener("keydown", e => {
         if (e.key === "Escape" && (is_overlay || is_board)) {
             is_overlay = false;
@@ -275,13 +576,15 @@ const init_whiteboard = function(Reveal) {
 
     // Export internal controller
     window._wb = {
+        select_tool,
         toggle_canvas,
         toggle_board,
         color_next,
         color_prev,
         set_color,
         clear,
-        download
+        download,
+        get_tool: () => current_tool
     };
 
     update_ui();
