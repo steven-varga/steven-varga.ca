@@ -3238,6 +3238,64 @@ connections:
                     </div>
                 </section>
 
+                <!-- 5.2 VERTICAL DETAIL: Product Catalog & Fable Model Descriptor -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-book-open" style="color:var(--solar-cyan);"></i> Product Catalog Descriptor (products.conf)</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Vendor service properties, reasoning effort multipliers, and Claude Fable model definitions.
+                            </p>
+                        </div>
+                        <span class="tag-pill"><i class="fas fa-microchip"></i> Anthropic Fable Descriptor</span>
+                    </div>
+
+                    <div class="multiCol" style="gap: 14px;">
+                        <div class="col" style="flex: 1.25;">
+                            <pre><code class="yaml" style="font-size: 0.70em; line-height: 1.26; max-height: 380px;"># /etc/sigma-aid/products.conf (Anthropic API Key &amp; Fable Catalog)
+products:
+  anthropic.api_key:
+    vendor: anthropic
+    family: messages
+    auth: api_key
+    timeout: 1min
+    host: api.anthropic.com
+    default_model: claude-sonnet-5-5
+    models:
+      claude-fable-5-1:
+        kind: chat
+        tier: frontier
+        family: fable
+        context: 1000000            # 1M token context window
+        max_output: 128000          # 128K max generation tokens
+        input: [text, images]
+        output: [text]
+        effort:
+          choices: [low, medium, high, xhigh, max]
+          default: high
+          cost: {low: 0.8, medium: 0.9, high: 1.0, xhigh: 1.4, max: 1.7}
+        price: {in: 10.00, cached_in: 0.25, out: 50.00}  # USD per 1M tokens
+        capabilities: [streaming, function-calling, structured-output, prompt-caching, adaptive-thinking]
+        notes: "Anthropic's flagship for demanding reasoning &amp; long-horizon agentic work."
+                            </code></pre>
+                        </div>
+                        <div class="col" style="flex: 0.95;">
+                            <div class="card purple" style="padding: 10px; margin-bottom: 8px;">
+                                <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-layer-group"></i> Canonically Derived Keys</h4>
+                                <p style="font-size: 0.72em; margin: 0;">Product keys follow <code>&lt;vendor&gt;.&lt;auth&gt;</code> (e.g. <code>anthropic.api_key</code> or <code>anthropic.subscription</code>). The parser refuses conflicting declarations.</p>
+                            </div>
+                            <div class="card warning" style="padding: 10px; margin-bottom: 8px;">
+                                <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-brain"></i> Adaptive Thinking &amp; Effort</h4>
+                                <p style="font-size: 0.72em; margin: 0;"><code>effort.cost</code> maps the vendor's consumption multiplier (0.8x up to 1.7x max). <code>adaptive-thinking</code> is always active on the wire.</p>
+                            </div>
+                            <div class="card success" style="padding: 10px; margin-bottom: 0;">
+                                <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-tags"></i> Selector Family: fable</h4>
+                                <p style="font-size: 0.72em; margin: 0;">In <code>roles.conf</code>, agents use <code>anthropic fable high</code> to route to Fable without hardcoding model version tags.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- 5.3 VERTICAL DETAIL: Staffing & Model Routing -->
                 <section data-time="standard" data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
