@@ -1224,8 +1224,8 @@
                     1. What is an AI agent?
                     2. What engineering problems can systems solve?
                     3. Where typical AI systems fail.
-                    4. Sigma AI design invariants.
-                    5. The complete Sigma AI subsystem ecosystem.
+                    4. The complete Sigma AI subsystem ecosystem.
+                    5. Manual configuration walkthrough inside /etc/sigma-aid/.
                     6. The Virtual Office: Organizational architecture for autonomous AI.
                     7. Deployment topologies and enterprise licensing.
                 </aside>
@@ -1241,8 +1241,8 @@
                         <span class="story-step active"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
                         <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
                         <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
                         <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
                     </div>
@@ -1898,10 +1898,10 @@
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step active"><i class="fas fa-cogs"></i> 2. Opportunity</span>
                         <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
                         <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
-                        <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy &amp; Deploy</span>
+                        <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
                     </div>
 
                     <h2>What Can AI Systems Actually Solve?</h2>
@@ -2178,10 +2178,10 @@
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
                         <span class="story-step active"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
                         <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
-                        <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy &amp; Deploy</span>
+                        <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
                     </div>
 
                     <h2>The Trust Barrier</h2>
@@ -2262,7 +2262,7 @@
                         4. Runaway Spend: The CFO's panic over unbudgeted overnight loops and duplicate external effects.
                         5. Memory Bleed & Contamination: The compliance elephant in the room—Chinese Wall breaches in capital management and cross-project IP leaks in R&D.
 
-                        Key transition to Section 4: Trust cannot be requested from a probabilistic model; it must be guaranteed by kernel-level systems invariants.
+                        Key transition to Section 4: Trust cannot be requested from a probabilistic model; it must be guaranteed by native system boundaries and the subsystem ecosystem.
                     </aside>
                 </section>
 
@@ -2574,140 +2574,17 @@
                 </section>
             </section>
             <!-- ======================================================== -->
-            <!-- TOP LEVEL SLIDE 4: SIGMA AI DESIGN CONSIDERATIONS       -->
+            <!-- TOP LEVEL SLIDE 4: THE SIGMA AI ECOSYSTEM               -->
             <!-- ======================================================== -->
             <section>
-                <!-- 4.0 TOP-LEVEL HORIZONTAL SLIDE -->
+                <!-- 4.0 TOP-LEVEL HORIZONTAL SLIDE: ECOSYSTEM OVERVIEW -->
                 <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
                     <div class="story-bar">
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
                         <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step active"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
-                        <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
-                        <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
-                    </div>
-
-                    <h2>Sigma AI Design Considerations</h2>
-                    <h3>Systems Engineering for AI: The Core Architectural Invariants</h3>
-
-                    <div class="grid-2x2" style="margin-top: 14px;">
-                        <div class="card success">
-                            <div class="topology-header">
-                                <i class="fas fa-shield-alt" style="color:var(--solar-green);"></i>
-                                <h4 style="margin:0; font-size: 0.95em;">1. Kernel-Level Isolation</h4>
-                            </div>
-                            <p style="font-size: 0.76em; margin: 4px 0 0 0;">
-                                <em>The model cannot execute what the kernel forbids.</em> POSIX user separation (UID 1001), <code>SO_PEERCRED</code> socket authentication, locked RAM pages (<code>mlock</code>), and Bubblewrap sandboxing.
-                            </p>
-                        </div>
-
-                        <div class="card accent">
-                            <div class="topology-header">
-                                <i class="fas fa-tachometer-alt" style="color:var(--solar-cyan);"></i>
-                                <h4 style="margin:0; font-size: 0.95em;">2. Native C++23 Performance</h4>
-                            </div>
-                            <p style="font-size: 0.76em; margin: 4px 0 0 0;">
-                                Sub-millisecond startup, &lt;5 MB baseline resident memory, zero Node.js daemon bloat, non-blocking asynchronous <code>epoll</code> I/O loops, and compile-time type safety.
-                            </p>
-                        </div>
-
-                        <div class="card purple">
-                            <div class="topology-header">
-                                <i class="fas fa-file-invoice" style="color:var(--solar-violet);"></i>
-                                <h4 style="margin:0; font-size: 0.95em;">3. Durable Before Effect</h4>
-                            </div>
-                            <p style="font-size: 0.76em; margin: 4px 0 0 0;">
-                                Every user request and tool intent is committed to an immutable append-only disk ledger (the session tape) <em>before</em> firing network provider calls or mutating files.
-                            </p>
-                        </div>
-
-                        <div class="card">
-                            <div class="topology-header">
-                                <i class="fas fa-network-wired" style="color:var(--solar-blue);"></i>
-                                <h4 style="margin:0; font-size: 0.95em;">4. Deterministic Fencing</h4>
-                            </div>
-                            <p style="font-size: 0.76em; margin: 4px 0 0 0;">
-                                Unique attempt tokens fence out stale callbacks from timed-out retries. Session state is a pure, reproducible projection derived from sequential tape replays.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="down-cue">
-                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for binary framing, memory locks (mlock), and invariant verification
-                    </div>
-                </section>
-
-                <!-- 4.1 VERTICAL DETAIL: Binary Framing & UDS -->
-                <section data-time="standard" data-audience="tech" style="text-align: left;">
-                    <h3>Transport: Length-Prefixed Binary Framing</h3>
-                    <p style="font-size: 0.80em;">Unix Domain Sockets eliminate TCP overhead and localhost port-scanning vulnerabilities:</p>
-                    <pre><code class="cpp">
-// Typed binary frame over /run/sigma-ai/sigma-aid.sock
-#pragma pack(push, 1)
-struct frame_header_t {
-    uint32_t length;      // Big-endian payload byte count
-    uint32_t channel;     // 0: Control, 1: File stream, 2: Event stream
-    uint8_t  kind;        // 0x01: Handshake, 0x02: Token Delta, 0x03: Tool Exec
-    uint8_t  flags;       // Bit 0: Final chunk, Bit 1: Error fence
-};
-#pragma pack(pop)
-                    </code></pre>
-                    <div class="multiCol">
-                        <div class="col">
-                            <span class="badge badge-green"><i class="fas fa-lock"></i> Zero TCP Ports</span>
-                            <span style="font-size: 0.75em; margin-left: 6px;">Confinable via standard UNIX file permissions (<code>0007</code> umask).</span>
-                        </div>
-                        <div class="col">
-                            <span class="badge badge-violet"><i class="fas fa-bolt"></i> Non-Blocking I/O</span>
-                            <span style="font-size: 0.75em; margin-left: 6px;">Driven by Linux <code>epoll</code> for low latency under high concurrency.</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 4.2 VERTICAL DETAIL: Memory & Credential Hardening -->
-                <section data-time="deep" data-audience="tech" style="text-align: left;">
-                    <h3><i class="fas fa-memory" style="color:var(--solar-violet);"></i> Memory & Credential Hardening</h3>
-                    <p style="font-size: 0.80em;"><code>sigma::secret</code> guarantees provider API keys never touch disk or leak across processes:</p>
-                    <div class="multiCol">
-                        <div class="col">
-                            <div class="card purple">
-                                <h4><code>mlock()</code> Pinned Memory Pages</h4>
-                                <ul class="feature-list" style="font-size: 0.78em;">
-                                    <li class="shield">Locked in physical RAM via <code>mlock()</code>; Linux kernel is forbidden from swapping keys to disk swap space.</li>
-                                    <li class="shield">Omitted from core dumps via <code>MADV_DONTDUMP</code>.</li>
-                                    <li class="shield">Automatic zeroization on destruction (<code>explicit_bzero</code>) prevents stale heap memory reuse.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <h4>Tool Subprocess Memory Isolation</h4>
-                                <ul class="feature-list" style="font-size: 0.78em;">
-                                    <li>Tools run in separate spawned processes via <code>posix_spawn</code> or <code>fork/exec</code>.</li>
-                                    <li>Sanitized environment: <code>$SSH_AUTH_SOCK</code>, <code>$AWS_SECRET_ACCESS_KEY</code>, and parent tokens are stripped.</li>
-                                    <li>Address space is completely isolated from the daemon runtime.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </section>
-
-            <!-- ======================================================== -->
-            <!-- ======================================================== -->
-            <!-- TOP LEVEL SLIDE 5: THE SIGMA AI ECOSYSTEM               -->
-            <!-- ======================================================== -->
-            <section>
-                <!-- 5.0 TOP-LEVEL HORIZONTAL SLIDE: ECOSYSTEM OVERVIEW -->
-                <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
-                    <div class="story-bar">
-                        <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
-                        <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
-                        <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step active"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
+                        <span class="story-step active"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
                         <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
                         <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
                     </div>
@@ -2782,7 +2659,7 @@ struct frame_header_t {
                     </div>
                 </section>
 
-                <!-- 5.1 VERTICAL DETAIL: sigma-aid Daemon Features & Execution Behavior -->
+                <!-- 4.1 VERTICAL DETAIL: sigma-aid Daemon Features & Execution Behavior -->
                 <section data-time="standard" data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
@@ -2835,7 +2712,7 @@ struct frame_header_t {
                     </div>
                 </section>
 
-                <!-- 5.2 VERTICAL DETAIL: Supported Providers & Connection Engine -->
+                <!-- 4.2 VERTICAL DETAIL: Supported Providers & Connection Engine -->
                 <section data-time="standard" data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
@@ -2894,7 +2771,7 @@ coder:
                     </div>
                 </section>
 
-                <!-- 5.3 VERTICAL DETAIL: Setup Wizard & Configuration Control Panel -->
+                <!-- 4.3 VERTICAL DETAIL: Setup Wizard & Configuration Control Panel -->
                 <section data-time="standard" data-audience="all" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
@@ -2958,7 +2835,7 @@ coder:
                     </div>
                 </section>
 
-                <!-- 5.4 VERTICAL DETAIL: sigma-ide Workbench Features -->
+                <!-- 4.4 VERTICAL DETAIL: sigma-ide Workbench Features -->
                 <section data-time="deep" data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
@@ -3005,7 +2882,7 @@ coder:
                     </div>
                 </section>
 
-                <!-- 5.5 VERTICAL DETAIL: Repository SCM & Interactive Commit Graph -->
+                <!-- 4.5 VERTICAL DETAIL: Repository SCM & Interactive Commit Graph -->
                 <section data-time="standard" data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
@@ -3051,7 +2928,7 @@ coder:
                     </div>
                 </section>
 
-                <!-- 5.6 VERTICAL DETAIL: Team Communication Bridges & Remote Daemons -->
+                <!-- 4.6 VERTICAL DETAIL: Team Communication Bridges & Remote Daemons -->
                 <section data-time="standard" data-audience="tech" style="text-align: left;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                         <div>
@@ -3124,7 +3001,7 @@ coder:
                     </div>
                 </section>
 
-                <!-- 5.7 VERTICAL DETAIL: sigma-iam Role Capabilities -->
+                <!-- 4.7 VERTICAL DETAIL: sigma-iam Role Capabilities -->
                 <section data-time="standard" data-audience="all" data-transition="convex">
                     <h2>Role-Based Guardrails &amp; Permissions</h2>
                     <p style="font-size: 0.75em; color: var(--solar-base01); margin-top: -6px; margin-bottom: 12px;">
@@ -3180,6 +3057,307 @@ coder:
                 </section>
             </section>
 
+            <!-- ======================================================== -->
+            <!-- TOP LEVEL SLIDE 5: CONFIGURATION                         -->
+            <!-- ======================================================== -->
+<!-- ======================================================== -->
+<!-- ======================================================== -->
+            <section>
+                <!-- 5.0 TOP-LEVEL HORIZONTAL SLIDE: CONFIGURATION OVERVIEW -->
+                <section data-time="flash" data-time-biz="standard" data-audience="all" data-transition="convex">
+                    <div class="story-bar">
+                        <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
+                        <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
+                        <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
+                        <span class="story-step"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step active"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
+                        <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
+                        <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
+                    </div>
+
+                    <h2>Manual Configuration: Inside /etc/sigma-aid/</h2>
+                    <h3>Declarative, Predictable, and Version-Controlled on Local Disk</h3>
+
+                    <div class="grid-3col" style="margin-top: 14px;">
+                        <div class="card success">
+                            <div class="topology-header">
+                                <i class="fas fa-server" style="color:var(--solar-green);"></i>
+                                <h4 style="margin:0; font-size: 0.92em;">config.conf</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                <strong>Daemon Core &amp; Bounds:</strong> Socket file path, OS user authentication (<code>allow_uids</code>), workspace write boundaries, and tool concurrency limits.
+                            </p>
+                        </div>
+
+                        <div class="card accent">
+                            <div class="topology-header">
+                                <i class="fas fa-network-wired" style="color:var(--solar-cyan);"></i>
+                                <h4 style="margin:0; font-size: 0.92em;">products.conf</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                <strong>Model Inventory:</strong> Pricing rates, token windows, streaming wire formats, and context limits for all supported frontier and local providers.
+                            </p>
+                        </div>
+
+                        <div class="card warning">
+                            <div class="topology-header">
+                                <i class="fas fa-users-cog" style="color:var(--solar-orange);"></i>
+                                <h4 style="margin:0; font-size: 0.92em;">roles.conf</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                <strong>Office Positions:</strong> Maps staff positions (director, coder, reviewer) to model selector fallback chains and assigned personalities.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid-3col" style="margin-top: 12px;">
+                        <div class="card purple">
+                            <div class="topology-header">
+                                <i class="fas fa-brain" style="color:var(--solar-violet);"></i>
+                                <h4 style="margin:0; font-size: 0.92em;">personalities.conf</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                <strong>Voice &amp; Rules:</strong> Operating instructions, tone guidelines, and evidence-first rules (cite real test output, no hallucinations).
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <div class="topology-header">
+                                <i class="fas fa-puzzle-piece" style="color:var(--solar-blue);"></i>
+                                <h4 style="margin:0; font-size: 0.92em;">skills.conf</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                <strong>Extensibility:</strong> External Model Context Protocol (MCP) servers and approved procedural skill package directories.
+                            </p>
+                        </div>
+
+                        <div class="card danger">
+                            <div class="topology-header">
+                                <i class="fas fa-exclamation-triangle" style="color:var(--solar-red);"></i>
+                                <h4 style="margin:0; font-size: 0.92em;">Fail-Fast Boot</h4>
+                            </div>
+                            <p style="font-size: 0.74em; margin: 4px 0 0 0;">
+                                <strong>Strict Validation:</strong> Unknown keys or invalid types halt startup immediately with the exact file and line number. Zero silent bad defaults.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="down-cue">
+                        <i class="fas fa-chevron-down"></i> Press <kbd>&darr;</kbd> for daemon core, provider keys, role routing, and MCP configuration
+                    </div>
+                </section>
+
+                <!-- 5.1 VERTICAL DETAIL: Daemon Core & Filesystem Security -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-shield-alt" style="color:var(--solar-green);"></i> Daemon Core &amp; Filesystem Boundaries (config.conf)</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Defining operating system security boundaries and file system access gates.
+                            </p>
+                        </div>
+                        <span class="tag-pill"><i class="fas fa-terminal"></i> /etc/sigma-aid/config.conf</span>
+                    </div>
+
+                    <pre><code class="yaml">
+# Core daemon process and POSIX socket configuration
+daemon:
+  socket: "/run/sigma-ai/sigma-aid.sock"
+  socket_mode: "0660"               # Accessible only to owning user and 'ai' group
+  allow_uids: [1000]                # Authorized local Linux UID (verified via SO_PEERCRED)
+  admin_uids: [1000]                # Administrative authority for key registration
+
+# Filesystem containment boundaries
+security:
+  read_root: "/home/developer"      # Outer read boundary for code inspection
+  daemon_tool_write_root: "/home/developer/workspace" # Strictly confined write tree
+  allow_arbitrary_commands: false   # Disallow raw shell execution unless pre-approved
+
+# Execution resource caps
+execution:
+  daemon_tool_workers: 4            # Maximum concurrent subprocess tools
+  tool_timeout_seconds: 120         # Kills runaway compiler or test executions
+                    </code></pre>
+
+                    <div class="multiCol">
+                        <div class="col">
+                            <div class="card success" style="margin: 0; padding: 10px 14px;">
+                                <h4 style="margin: 0 0 4px 0; font-size: 0.84em;"><i class="fas fa-lock"></i> Descriptor-Relative Path Confinement</h4>
+                                <p style="font-size: 0.74em; margin: 0;">Uses Linux <code>openat2</code> with <code>RESOLVE_BENEATH</code> to prevent directory traversal outside workspace trees.</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card warning" style="margin: 0; padding: 10px 14px;">
+                                <h4 style="margin: 0 0 4px 0; font-size: 0.84em;"><i class="fas fa-stopwatch"></i> Automatic Timeout Fencing</h4>
+                                <p style="font-size: 0.74em; margin: 0;">Tools exceeding their time quota are terminated cleanly via process groups; callbacks from dead jobs are dropped.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.2 VERTICAL DETAIL: AI Providers & Credential Security -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-key" style="color:var(--solar-cyan);"></i> Provider Connections &amp; Credential Isolation</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Zero markup Bring Your Own Key (BYOK) connectivity with in-memory credential locking.
+                            </p>
+                        </div>
+                        <span class="tag-pill"><i class="fas fa-lock"></i> Memory Hardening</span>
+                    </div>
+
+                    <pre><code class="yaml">
+# Provider connection catalog and routing defaults
+connections:
+  claude:
+    product: "anthropic/claude-3-7-sonnet"
+    default_candidate: true         # Preferred reasoning provider
+  openai:
+    product: "openai/gpt-4o"
+  gemini:
+    product: "google/gemini-2.0-flash"
+  local:
+    product: "ollama/qwen2.5-coder"
+    endpoint: "http://127.0.0.1:11434"
+                    </code></pre>
+
+                    <div class="grid-3col" style="margin-top: 10px;">
+                        <div class="card purple" style="padding: 10px;">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-user-shield"></i> No Home Dir Scans</h4>
+                            <p style="font-size: 0.72em; margin: 0;">The daemon is forbidden from reading <code>~/.bashrc</code>, <code>~/.ssh</code>, or <code>~/.aws</code>. Keys are submitted over the socket.</p>
+                        </div>
+                        <div class="card success" style="padding: 10px;">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-memory"></i> mlock() RAM Locking</h4>
+                            <p style="font-size: 0.72em; margin: 0;">API secrets are pinned in physical RAM; kernel cannot write them to disk swap space and wipes them on free.</p>
+                        </div>
+                        <div class="card accent" style="padding: 10px;">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-filter"></i> Gitleaks Redaction</h4>
+                            <p style="font-size: 0.72em; margin: 0;">Outbound payloads are scanned before leaving your machine; accidental tokens or passwords are redacted.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.3 VERTICAL DETAIL: Staffing & Model Routing -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-sitemap" style="color:var(--solar-yellow);"></i> Staffing &amp; Model Routing (roles.conf)</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Assigning model fallback chains and personas to distinct virtual office positions.
+                            </p>
+                        </div>
+                        <span class="tag-pill"><i class="fas fa-terminal"></i> /etc/sigma-aid/roles.conf</span>
+                    </div>
+
+                    <pre><code class="yaml">
+# Office positions and model fallback chains
+roles:
+  director:
+    model_selector: "anthropic/claude-3-7-sonnet"
+    fallback_selector: "openai/o3-mini"
+    reasoning_effort: "high"
+    personality: "director"
+
+  coder:
+    model_selector: "anthropic/claude-3-7-sonnet"
+    fallback_selector: "ollama/qwen2.5-coder"
+    reasoning_effort: "medium"
+    personality: "terse_engineer"
+
+  reviewer:
+    model_selector: "openai/gpt-4o"
+    fallback_selector: "google/gemini-2.0-flash"
+    personality: "rigorous_qa"
+                    </code></pre>
+
+                    <div class="card" style="margin-top: 10px; padding: 10px 14px;">
+                        <p style="font-size: 0.74em; margin: 0;">
+                            <strong>Candidate Cascading:</strong> If a primary model provider experiences downtime or rate limits, the daemon automatically routes the task to the fallback selector without crashing the turn or dropping workspace state.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 5.4 VERTICAL DETAIL: Instructions & Dynamic Variables -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-comment-alt" style="color:var(--solar-orange);"></i> Custom Instructions &amp; Dynamic Variables (prompts.conf)</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Codifying domain standards and operating rules into deterministic prompt templates.
+                            </p>
+                        </div>
+                        <span class="tag-pill"><i class="fas fa-file-code"></i> prompts.conf</span>
+                    </div>
+
+                    <pre><code class="yaml">
+# Prompt template with dynamic environment variable interpolation
+system_prompt:
+  base: |
+    You are {{agent_name}}, operating in workspace: {{workspace}}.
+    Available tools: {{tools}}.
+    Approved skills: {{skills}}.
+
+    OPERATING DISCIPLINE:
+    1. Batch independent tool calls in a single turn.
+    2. Enforce read-before-edit: always inspect files before submitting diffs.
+    3. Build output must live outside git checkouts under ./build/.
+    4. Unverified work is never committed to history as completed.
+                    </code></pre>
+
+                    <div class="grid-2x2" style="margin-top: 10px;">
+                        <div class="card success" style="margin: 0; padding: 10px;">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-magic"></i> Automatic Variable Expansion</h4>
+                            <p style="font-size: 0.72em; margin: 0;">Variables like <code>{{tools}}</code> and <code>{{skills}}</code> are populated at runtime based strictly on role permissions.</p>
+                        </div>
+                        <div class="card purple" style="margin: 0; padding: 10px;">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.82em;"><i class="fas fa-anchor"></i> Evidence-Based Grounding</h4>
+                            <p style="font-size: 0.72em; margin: 0;">System rules enforce that every technical claim must cite actual file content or live compiler exit codes.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.5 VERTICAL DETAIL: Extending with Tools & MCP Servers -->
+                <section data-time="standard" data-audience="tech" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.15em;"><i class="fas fa-puzzle-piece" style="color:var(--solar-blue);"></i> Extending with Tools &amp; MCP Servers (skills.conf)</h3>
+                            <p style="font-size: 0.72em; color: var(--solar-base01); margin: 2px 0 0 0;">
+                                Connecting external Model Context Protocol services and versioned skills.
+                            </p>
+                        </div>
+                        <span class="tag-pill"><i class="fas fa-terminal"></i> /etc/sigma-aid/skills.conf</span>
+                    </div>
+
+                    <pre><code class="yaml">
+# External Model Context Protocol (MCP) server definitions
+mcp_servers:
+  chrome_devtools:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-puppeteer"]
+    env: { "HEADLESS": "true" }
+
+  database_reader:
+    url: "http://127.0.0.1:8080/sse"
+    transport: "sse"
+
+# Curated Agent Skills packages (agentskills.io format)
+skills:
+  repository_path: "/var/lib/sigma-aid/skills"
+  enabled_skills:
+    - "product-marketing"
+    - "code-review"
+    - "database-migrations"
+                    </code></pre>
+
+                    <div class="card warning" style="margin-top: 10px; padding: 10px 14px;">
+                        <p style="font-size: 0.74em; margin: 0;">
+                            <strong>Namespace Isolation:</strong> MCP tools are automatically namespaced (e.g., <code>mcp__chrome_devtools__click</code>) to prevent collisions with native POSIX filesystem tools.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
             <!-- TOP LEVEL SLIDE 6: THE VIRTUAL OFFICE                   -->
             <!-- ======================================================== -->
             <section>
@@ -3189,8 +3367,8 @@ coder:
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
                         <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
                         <span class="story-step active"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
                         <span class="story-step"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
                     </div>
@@ -3409,8 +3587,8 @@ coder:
                         <span class="story-step"><i class="fas fa-robot"></i> 1. Context</span>
                         <span class="story-step"><i class="fas fa-cogs"></i> 2. Opportunity</span>
                         <span class="story-step"><i class="fas fa-user-shield"></i> 3. Trust Barrier</span>
-                        <span class="story-step"><i class="fas fa-shield-alt"></i> 4. Invariants</span>
-                        <span class="story-step"><i class="fas fa-cubes"></i> 5. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-cubes"></i> 4. Ecosystem</span>
+                        <span class="story-step"><i class="fas fa-sliders-h"></i> 5. Configuration</span>
                         <span class="story-step"><i class="fas fa-sitemap"></i> 6. Virtual Office</span>
                         <span class="story-step active"><i class="fas fa-shopping-cart"></i> 7. Buy & Deploy</span>
                     </div>
